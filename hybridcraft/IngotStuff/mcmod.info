@@ -1,0 +1,24 @@
+[
+{
+  "modid": "Hybrid Craft 2",
+  "name": "Hybridcraft 2 Materials",
+  "description": "Mixing Minecraft for the Better",
+  "version": "2",
+  "mcversion": "1.3.2",
+  "url": "http://mchybrid.blogspot.com",
+  "updateUrl": "",
+  "authors": [
+    "SparkMaster"
+    "SebDaMuffin"
+    "Heyguys"
+    "aanthony3"
+  ],
+  "credits": "To Aanthony for helping with git. Heyguys for wiki and images. Seb for helping with code. :D",
+  "logoFile": "/hc/Hybridcraft.png",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
