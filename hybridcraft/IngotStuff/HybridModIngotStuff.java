@@ -589,7 +589,7 @@ public void PreLoad(FMLPreInitializationEvent event){
 	sandIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Sand Ingot", 642).getInt();
 	sandBlockID = config.get(Configuration.CATEGORY_BLOCK, "Sand Ingot Block", 643).getInt();
 	stoneHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stone Helmet", 644).getInt();
-	stoneHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stone Chestplate", 645).getInt();
+	stonePlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stone Chestplate", 645).getInt();
 	stoneLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stone Leggings", 646).getInt();
 	stoneBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stone Boots", 647).getInt();
 	sandHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Sand Helmet", 648).getInt();
@@ -601,11 +601,11 @@ public void PreLoad(FMLPreInitializationEvent event){
 	sandaxeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Sand Axe", 654).getInt();
 	sandshovelID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Sand Shovel", 655).getInt();
 	sandhoeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Sand Hoe", 656).getInt();
-	cobbleswordID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Sword", 652).getInt();
-	cobblepickID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Pickaxe", 653).getInt();
-	cobbleaxeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Axe", 654).getInt();
-	cobbleshovelID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Shovel", 655).getInt();
-	cobblehoeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Hoe", 656).getInt();
+	cobbleswordID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Sword", 657).getInt();
+	cobblepickID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Pickaxe", 658).getInt();
+	cobbleaxeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Axe", 659).getInt();
+	cobbleshovelID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Shovel", 660).getInt();
+	cobblehoeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Hoe", 661).getInt();
 	
 	config.save();
 	
