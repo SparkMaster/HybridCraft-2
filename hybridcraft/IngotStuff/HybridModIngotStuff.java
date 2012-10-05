@@ -27,7 +27,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import hybridcraft.IngotStuff.*;
 
-@Mod(modid = "HybridCraft 2", name = "HybridCraft 2 Materials", version = "2.0")
+@Mod(modid = "HybridCraft 2 Materials", name = "HybridCraft 2 Materials", version = "2.2 beta 1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
 
@@ -449,7 +449,7 @@ public class HybridModIngotStuff {
 public void PreLoad(FMLPreInitializationEvent event){
 	Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 	
-	config.load();
+//	config.load();
 	
 	dirtswordID = config.get(CATEGORY_TOOL, "Dirt Sword", 500).getInt();
 	dirtpickID = config.get(CATEGORY_TOOL, "Dirt Pickaxe", 501).getInt();

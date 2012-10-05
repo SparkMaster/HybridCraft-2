@@ -5,7 +5,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "HybridCraft 2", name = "HybridCraft 2.2 Food", version = "2.2")
+@Mod(modid = "HybridCraft 2 Food", name = "HybridCraft 2 Food", version = "2.2 beta 1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
 public class HybridModFoodStuff {

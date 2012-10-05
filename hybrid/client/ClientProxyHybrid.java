@@ -13,7 +13,7 @@ public class ClientProxyHybrid extends hybridcraft.IngotStuff.CommonProxyHybrid
 	MinecraftForgeClient.preloadTexture("/hc/blocks.png");
 	MinecraftForgeClient.preloadTexture("/hc/armor.png");
 	MinecraftForgeClient.preloadTexture("/hc/worldblocks.png");
-	MinecraftForgeClient.preloadTexture("hc/flowers.png");
+	MinecraftForgeClient.preloadTexture("/hc/flowers.png");
 	}
 	
 	@Override
