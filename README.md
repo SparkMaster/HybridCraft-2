@@ -2,8 +2,8 @@ Welcome to Hybrid Craft 2 Git.. :)
 
 Hybrid Craft 2 is maintained by 3 people. :D
 Heyguys.. -- Photographer
-Me: SparkMaster.. -- Programmer/Texturer
-SebDaMuffin.. -- Programmer
+Me: SparkMaster.. -- Programmer/Texturer/GitHub
+SebDaMuffin.. -- Programmer/GitHub
 
 Hybrid craft is a mods folder mod. :D and it is really
 fun to use when you have chests full of dirt, sand, cobble
@@ -17,9 +17,5 @@ Current Hybrid Craft Release: 2.1 Release 2
 
 Current Indev Hybrid Craft: 2.2 Beta 1
 
-Setup Hook to announce pushes on the IRC. :) SWEET!!
-
-Got all Kinks worked out with the IRC Hook. :D Works
-properly now.
-
-Seb is now able to push!!
+If you want to chat with us come join @ #hybridcraft2 :D
+(IRC Espernet Channel)
