@@ -12,3 +12,8 @@ or even just some original minecraft ores like iron. :D
 We will always release the most suitable version, and 
 update for you guys. We won't let any bugs get into you
 minecraft from this. :D
+
+Current Hybrid Craft Release: 2.1 Release 2
+
+
+Current Indev Hybrid Craft: 2.2 Beta 1
