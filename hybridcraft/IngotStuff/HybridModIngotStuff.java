@@ -58,6 +58,7 @@ public class HybridModIngotStuff {
 	static EnumToolMaterial gomend = EnumHelper.addToolMaterial("gomend", 2, 796, 10.0F, 2, 14);
 	static EnumToolMaterial obsidian = EnumHelper.addToolMaterial("obsidian", 3, 1233, 12.0F, 3, 14);
 	static EnumToolMaterial sand = EnumHelper.addToolMaterial("sand", 0, 35, 2.0F, 0, 14);
+	static EnumToolMaterial cobble = EnumHelper.addToolMaterial("cobble", 0, 75, 1.0F, 0, 14);
 	
 	//Enums
 	//CLOTH(5, new int[]{1, 3, 2, 1}, 15),
@@ -148,6 +149,11 @@ public class HybridModIngotStuff {
 	public static Item sandaxe;
 	public static Item sandshovel;
 	public static Item sandhoe;
+	public static Item cobblesword;
+	public static Item cobblepick;
+	public static Item cobbleaxe;
+	public static Item cobbleshovel;
+	public static Item cobblehoe;
 	
 	//Ingots
 	public static Item dirtIngot;
@@ -426,6 +432,11 @@ public class HybridModIngotStuff {
 	public int sandaxeID;
 	public int sandshovelID;
 	public int sandhoeID;
+	public int cobbleswordID;
+	public int cobblepickID;
+	public int cobbleaxeID;
+	public int cobbleshovelID;
+	public int cobblehoeID;
 	
 @PreInit
 public void PreLoad(FMLPreInitializationEvent event){
@@ -433,12 +444,6 @@ public void PreLoad(FMLPreInitializationEvent event){
 	
 	config.load();
 	
-	//see?
-	// the configuration refrerences the wrong file
-	// DAMN IT WORKS! Where have you been when i've need help before??
-	// haha well it says not to ask to help in the topic :P i was hesitating offering help
-	
-	// Where does it say that? Thanks for the help. :D Now off to find something else i can't do on my own.
 	dirtswordID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Dirt Sword", 500).getInt();
 	dirtpickID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Dirt Pickaxe", 501).getInt();
 	dirtaxeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Dirt Axe", 502).getInt();
@@ -499,68 +504,68 @@ public void PreLoad(FMLPreInitializationEvent event){
 	obsidianaxeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Obsidian Axe",  557).getInt();
 	obsidianshovelID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Obsidian Shovel",  558).getInt();
 	obsidianhoeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Obsidian Hoe",  559).getInt();
-	dirtIngotID = config.get(Configuration.CATEGORY_ITEM, "Dirt Ingot",  560).getInt();
-	dirtoneIngotID = config.get(Configuration.CATEGORY_ITEM, "Dirtone Ingot",  561).getInt();
-	dironIngotID = config.get(Configuration.CATEGORY_ITEM, "Diron Ingot",  562).getInt();
- 	diroldIngotID = config.get(Configuration.CATEGORY_ITEM, "Dirold Ingot",  563).getInt();
-	dirmendIngotID = config.get(Configuration.CATEGORY_ITEM, "Dirmend Ingot",  564).getInt();
-   	stoneIngotID = config.get(Configuration.CATEGORY_ITEM, "Stone Ingot",  565).getInt();
-	stornIngotID = config.get(Configuration.CATEGORY_ITEM, "Storn Ingot",  566).getInt();
-	stoldIngotID = config.get(Configuration.CATEGORY_ITEM, "Stold Ingot",  567).getInt();
-	stomendIngotID = config.get(Configuration.CATEGORY_ITEM, "Stomend Ingot",  568).getInt();
-	iroldIngotID = config.get(Configuration.CATEGORY_ITEM, "Irold Ingot",  569).getInt();
-	irmendIngotID = config.get(Configuration.CATEGORY_ITEM, "Irmend Ingot",  570).getInt();
-	gomendIngotID = config.get(Configuration.CATEGORY_ITEM, "Gomend Ingot",  571).getInt();
-	obsidianShardID = config.get(Configuration.CATEGORY_ITEM, "Obsidian Shard",  572).getInt();
-	obsidianIngotID = config.get(Configuration.CATEGORY_ITEM, "Obsidian Ingot",  573).getInt();	
-	dirtHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Dirt Helmet ",  574).getInt();
-	dirtPlateID = config.get(Configuration.CATEGORY_GENERAL, "Dirt Chestplate",  575).getInt();
-	dirtLegsID = config.get(Configuration.CATEGORY_GENERAL, "Dirt Leggings",  576).getInt();
-	dirtBootsID = config.get(Configuration.CATEGORY_GENERAL, "Dirt Boots",  577).getInt();
-	dirtoneHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Dirtone Helmet",  578).getInt();
-	dirtonePlateID = config.get(Configuration.CATEGORY_GENERAL, "Dirtone Chestplate",  579).getInt();
-	dirtoneLegsID = config.get(Configuration.CATEGORY_GENERAL, "Dirtone Leggings",  580).getInt();
-	dirtoneBootsID = config.get(Configuration.CATEGORY_GENERAL, "Dirtone Boots",  581).getInt();
-	dironHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Diron Helmet",  582).getInt();
-	dironPlateID = config.get(Configuration.CATEGORY_GENERAL, "Diron Chestplate",  583).getInt();
-	dironLegsID = config.get(Configuration.CATEGORY_GENERAL, "Diron Leggings",  584).getInt();
-	dironBootsID = config.get(Configuration.CATEGORY_GENERAL, "Diron Boots",  585).getInt();
-	diroldHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Dirold Helmet",  586).getInt();
-	diroldPlateID = config.get(Configuration.CATEGORY_GENERAL, "Dirold Chestplate",  587).getInt();
-	diroldLegsID = config.get(Configuration.CATEGORY_GENERAL, "Dirold Leggings",  588).getInt();
-	diroldBootsID = config.get(Configuration.CATEGORY_GENERAL, "Dirold Boots",  589).getInt();
-	dirmendHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Dirmend Helmet",  590).getInt();
-	dirmendPlateID = config.get(Configuration.CATEGORY_GENERAL, "Dirmend Chestplate",  591).getInt();
-	dirmendLegsID = config.get(Configuration.CATEGORY_GENERAL, "Dirmend Leggings",  592).getInt();
-	dirmendBootsID = config.get(Configuration.CATEGORY_GENERAL, "Dirmend Boots",  593).getInt();
-	stornHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Storn Helmet",  594).getInt();
-	stornPlateID = config.get(Configuration.CATEGORY_GENERAL, "Storn Chestplate",  595).getInt();
-	stornLegsID = config.get(Configuration.CATEGORY_GENERAL, "Storn Leggings",  596).getInt();
-	stornBootsID = config.get(Configuration.CATEGORY_GENERAL, "Storn Boots",  597).getInt();
-	stoldHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Stold Helmet",  598).getInt();
-	stoldPlateID = config.get(Configuration.CATEGORY_GENERAL, "Stold Chestplate",  599).getInt();
-	stoldLegsID = config.get(Configuration.CATEGORY_GENERAL, "Stold Leggings",  600).getInt();
-	stoldBootsID = config.get(Configuration.CATEGORY_GENERAL, "Stold Boots",  601).getInt();
-	stomendHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Stomend Helmet",  602).getInt();
-	stomendPlateID = config.get(Configuration.CATEGORY_GENERAL, "Stomend Chestplate",  603).getInt();
-	stomendLegsID = config.get(Configuration.CATEGORY_GENERAL, "Stomend Leggings",  604).getInt();
-	stomendBootsID = config.get(Configuration.CATEGORY_GENERAL, "Stomend Boots",  605).getInt();
-	iroldHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Irold Helmet",  606).getInt();
-	iroldPlateID = config.get(Configuration.CATEGORY_GENERAL, "Irold Chestplate",  607).getInt();
-	iroldLegsID = config.get(Configuration.CATEGORY_GENERAL, "Irold Leggings",  608).getInt();
-	iroldBootsID = config.get(Configuration.CATEGORY_GENERAL, "Irold Boots",  609).getInt();
-	irmendHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Irmend Helmet",  610).getInt();
-	irmendPlateID = config.get(Configuration.CATEGORY_GENERAL, "Irmend Chestplate",  611).getInt();
-	irmendLegsID = config.get(Configuration.CATEGORY_GENERAL, "Irmend Leggings",  612).getInt();
-	irmendBootsID = config.get(Configuration.CATEGORY_GENERAL, "Irmend Boots",  613).getInt();
-	gomendHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Gomend Helmet",  614).getInt();
-	gomendPlateID = config.get(Configuration.CATEGORY_GENERAL, "Gomend Chestplate",  615).getInt();
-	gomendLegsID = config.get(Configuration.CATEGORY_GENERAL, "Gomend Leggings",  616).getInt();
-	gomendBootsID = config.get(Configuration.CATEGORY_GENERAL, "Gomend Boots",  617).getInt();
-	obsidianHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Obsidian Helmet",  618).getInt();
-	obsidianPlateID = config.get(Configuration.CATEGORY_GENERAL, "Obsidian Chestplate",  619).getInt();
-	obsidianLegsID = config.get(Configuration.CATEGORY_GENERAL, "Obsidian Leggings",  620).getInt();
-	obsidianBootsID = config.get(Configuration.CATEGORY_GENERAL, "Obsidian Boots",  621).getInt();
+	dirtIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Dirt Ingot",  560).getInt();
+	dirtoneIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Dirtone Ingot",  561).getInt();
+	dironIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Diron Ingot",  562).getInt();
+ 	diroldIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Dirold Ingot",  563).getInt();
+	dirmendIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Dirmend Ingot",  564).getInt();
+   	stoneIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Stone Ingot",  565).getInt();
+	stornIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Storn Ingot",  566).getInt();
+	stoldIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Stold Ingot",  567).getInt();
+	stomendIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Stomend Ingot",  568).getInt();
+	iroldIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Irold Ingot",  569).getInt();
+	irmendIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Irmend Ingot",  570).getInt();
+	gomendIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Gomend Ingot",  571).getInt();
+	obsidianShardID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Obsidian Shard",  572).getInt();
+	obsidianIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Obsidian Ingot",  573).getInt();	
+	dirtHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirt Helmet ",  574).getInt();
+	dirtPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirt Chestplate",  575).getInt();
+	dirtLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirt Leggings",  576).getInt();
+	dirtBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirt Boots",  577).getInt();
+	dirtoneHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirtone Helmet",  578).getInt();
+	dirtonePlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirtone Chestplate",  579).getInt();
+	dirtoneLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirtone Leggings",  580).getInt();
+	dirtoneBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirtone Boots",  581).getInt();
+	dironHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Diron Helmet",  582).getInt();
+	dironPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Diron Chestplate",  583).getInt();
+	dironLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Diron Leggings",  584).getInt();
+	dironBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Diron Boots",  585).getInt();
+	diroldHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirold Helmet",  586).getInt();
+	diroldPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirold Chestplate",  587).getInt();
+	diroldLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirold Leggings",  588).getInt();
+	diroldBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirold Boots",  589).getInt();
+	dirmendHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirmend Helmet",  590).getInt();
+	dirmendPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirmend Chestplate",  591).getInt();
+	dirmendLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirmend Leggings",  592).getInt();
+	dirmendBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Dirmend Boots",  593).getInt();
+	stornHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Storn Helmet",  594).getInt();
+	stornPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Storn Chestplate",  595).getInt();
+	stornLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Storn Leggings",  596).getInt();
+	stornBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Storn Boots",  597).getInt();
+	stoldHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stold Helmet",  598).getInt();
+	stoldPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stold Chestplate",  599).getInt();
+	stoldLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stold Leggings",  600).getInt();
+	stoldBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stold Boots",  601).getInt();
+	stomendHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stomend Helmet",  602).getInt();
+	stomendPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stomend Chestplate",  603).getInt();
+	stomendLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stomend Leggings",  604).getInt();
+	stomendBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stomend Boots",  605).getInt();
+	iroldHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Irold Helmet",  606).getInt();
+	iroldPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Irold Chestplate",  607).getInt();
+	iroldLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Irold Leggings",  608).getInt();
+	iroldBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Irold Boots",  609).getInt();
+	irmendHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Irmend Helmet",  610).getInt();
+	irmendPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Irmend Chestplate",  611).getInt();
+	irmendLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Irmend Leggings",  612).getInt();
+	irmendBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Irmend Boots",  613).getInt();
+	gomendHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Gomend Helmet",  614).getInt();
+	gomendPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Gomend Chestplate",  615).getInt();
+	gomendLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Gomend Leggings",  616).getInt();
+	gomendBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Gomend Boots",  617).getInt();
+	obsidianHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Obsidian Helmet",  618).getInt();
+	obsidianPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Obsidian Chestplate",  619).getInt();
+	obsidianLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Obsidian Leggings",  620).getInt();
+	obsidianBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Obsidian Boots",  621).getInt();
 	dirtBlockID = config.get(Configuration.CATEGORY_BLOCK, "Dirt Ingot Block", 622).getInt();
 	dirtoneBlockID = config.get(Configuration.CATEGORY_BLOCK, "Dirtone Ingot Block", 623).getInt();
 	dironBlockID = config.get(Configuration.CATEGORY_BLOCK, "Diron Ingot Block", 624).getInt();
@@ -576,26 +581,31 @@ public void PreLoad(FMLPreInitializationEvent event){
 	dandID = config.get(Configuration.CATEGORY_BLOCK, "Dirt/Sand Block", 634).getInt();
 	davelID = config.get(Configuration.CATEGORY_BLOCK, "Dirt/Gravel Block", 635).getInt();
 	doneID = config.get(Configuration.CATEGORY_BLOCK, "Dirt/Stone Block", 636).getInt();
-	dirtFlowerID = config.get(Configuration.CATEGORY_GENERAL, "Dirt Flower", 637).getInt();
-	stoneFlowerID = config.get(Configuration.CATEGORY_GENERAL, "Stone Flower", 638).getInt();
-	ironFlowerID = config.get(Configuration.CATEGORY_GENERAL, "Iron Flower", 639).getInt();
-	goldFlowerID = config.get(Configuration.CATEGORY_GENERAL, "Gold Flower", 640).getInt();
-	diamondFlowerID = config.get(Configuration.CATEGORY_GENERAL, "Diamond Flower", 641).getInt();
-	sandIngotID = config.get(Configuration.CATEGORY_ITEM, "Sand Ingot", 642).getInt();
+	dirtFlowerID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_FLOWER, "Dirt Flower", 637).getInt();
+	stoneFlowerID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_FLOWER, "Stone Flower", 638).getInt();
+	ironFlowerID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_FLOWER, "Iron Flower", 639).getInt();
+	goldFlowerID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_FLOWER, "Gold Flower", 640).getInt();
+	diamondFlowerID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_FLOWER, "Diamond Flower", 641).getInt();
+	sandIngotID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_INGOT, "Sand Ingot", 642).getInt();
 	sandBlockID = config.get(Configuration.CATEGORY_BLOCK, "Sand Ingot Block", 643).getInt();
-	stoneHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Stone Helmet", 644).getInt();
-	stoneHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Stone Chestplate", 645).getInt();
-	stoneLegsID = config.get(Configuration.CATEGORY_GENERAL, "Stone Leggings", 646).getInt();
-	stoneBootsID = config.get(Configuration.CATEGORY_GENERAL, "Stone Boots", 647).getInt();
-	sandHelmetID = config.get(Configuration.CATEGORY_GENERAL, "Sand Helmet", 648).getInt();
-	sandPlateID = config.get(Configuration.CATEGORY_GENERAL, "Sand Chestplate", 649).getInt();
-	sandLegsID = config.get(Configuration.CATEGORY_GENERAL, "Sand Leggings", 650).getInt();
-	sandBootsID = config.get(Configuration.CATEGORY_GENERAL, "Sand Boots", 651).getInt();
-	sandswordID = config.get(Configuration.CATEGORY_GENERAL, "Sand Sword", 652).getInt();
-	sandpickID = config.get(Configuration.CATEGORY_GENERAL, "Sand Pickaxe", 653).getInt();
-	sandaxeID = config.get(Configuration.CATEGORY_GENERAL, "Sand Axe", 654).getInt();
-	sandshovelID = config.get(Configuration.CATEGORY_GENERAL, "Sand Shovel", 655).getInt();
-	sandhoeID = config.get(Configuration.CATEGORY_GENERAL, "Sand Hoe", 656).getInt();
+	stoneHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stone Helmet", 644).getInt();
+	stoneHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stone Chestplate", 645).getInt();
+	stoneLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stone Leggings", 646).getInt();
+	stoneBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Stone Boots", 647).getInt();
+	sandHelmetID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Sand Helmet", 648).getInt();
+	sandPlateID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Sand Chestplate", 649).getInt();
+	sandLegsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Sand Leggings", 650).getInt();
+	sandBootsID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_ARMOR, "Sand Boots", 651).getInt();
+	sandswordID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Sand Sword", 652).getInt();
+	sandpickID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Sand Pickaxe", 653).getInt();
+	sandaxeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Sand Axe", 654).getInt();
+	sandshovelID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Sand Shovel", 655).getInt();
+	sandhoeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Sand Hoe", 656).getInt();
+	cobbleswordID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Sword", 652).getInt();
+	cobblepickID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Pickaxe", 653).getInt();
+	cobbleaxeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Axe", 654).getInt();
+	cobbleshovelID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Shovel", 655).getInt();
+	cobblehoeID = config.get(hybridcraft.IngotStuff.Config.CATEGORY_TOOL, "Cobble Hoe", 656).getInt();
 	
 	config.save();
 	
@@ -670,6 +680,11 @@ public void load(FMLInitializationEvent event)
 	sandaxe = new ItemSandAxe(sandaxeID, sand).setIconIndex(62).setItemName("sandaxe");
 	sandshovel = new ItemSandShovel(sandshovelID, sand).setIconIndex(63).setItemName("sandshovel");
 	sandhoe = new ItemSandHoe(sandhoeID, sand).setIconIndex(64).setItemName("sandhoe");
+	cobblesword = new ItemCobbleSword(cobbleswordID, cobble).setIconIndex(65).setItemName("cobblesword");
+	cobblepick = new ItemCobblePick(cobblepickID, cobble).setIconIndex(66).setItemName("cobblepick");
+	cobbleaxe = new ItemCobbleAxe(cobbleaxeID, cobble).setIconIndex(67).setItemName("cobbleaxe");
+	cobbleshovel = new ItemCobbleShovel(cobbleshovelID, cobble).setIconIndex(68).setItemName("cobbleshovel");
+	cobblehoe = new ItemCobbleHoe(cobblehoeID, cobble).setIconIndex(69).setItemName("cobblehoe");
 	
 	
 	//Ingot
@@ -842,6 +857,11 @@ public void load(FMLInitializationEvent event)
 	LanguageRegistry.addName(sandaxe, "Sand Axe");
 	LanguageRegistry.addName(sandshovel, "Sand Shovel");
 	LanguageRegistry.addName(sandhoe, "Sand Hoe");
+	LanguageRegistry.addName(cobblesword, "Cobble Sword");
+	LanguageRegistry.addName(cobblepick, "Cobble Pickaxe");
+	LanguageRegistry.addName(cobbleaxe, "Cobble Axe");
+	LanguageRegistry.addName(cobbleshovel, "Cobble Shovel");
+	LanguageRegistry.addName(cobblehoe, "Cobble Hoe");
 	
 	//Ingot Registry
 	LanguageRegistry.addName(dirtIngot, "Dirt Ingot");
@@ -1229,6 +1249,26 @@ public void load(FMLInitializationEvent event)
 	GameRegistry.addRecipe(new ItemStack(sandhoe), new Object[]
 			{
 		"XX ", " S ", " S ", 'X', sandIngot, 'S', Item.stick
+			});
+	GameRegistry.addRecipe(new ItemStack(cobblesword), new Object[]
+			  {
+		"X", "X", "Z", 'X', Block.cobblestone, 'Z', Item.stick
+			  });
+	GameRegistry.addRecipe(new ItemStack(cobblepick), new Object[]
+			{
+		"XXX", " S ", " S ", 'X', Block.cobblestone, 'S', Item.stick
+			});
+	GameRegistry.addRecipe(new ItemStack(cobbleaxe), new Object[]
+			{
+		"XX ", "XS ", " S ", 'X', Block.cobblestone, 'S', Item.stick
+			});
+	GameRegistry.addRecipe(new ItemStack(cobbleshovel), new Object[]
+			{
+		"X", "S", "S", 'X', Block.cobblestone, 'S', Item.stick
+			});
+	GameRegistry.addRecipe(new ItemStack(cobblehoe), new Object[]
+			{
+		"XX ", " S ", " S ", 'X', Block.cobblestone, 'S', Item.stick
 			});
 	
 	//Ingot Recipes

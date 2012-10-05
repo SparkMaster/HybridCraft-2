@@ -9,6 +9,7 @@ public class Config extends Configuration {
 	public static final String CATEGORY_TOOL = "tools";
 	public static final String CATEGORY_INGOT = "ingots";
 	public static final String CATEGORY_ARMOR = "armors";
+	public static final String CATEGORY_FLOWER = "flowers";
 	
 	public Config(File file) {
 		super(file);
