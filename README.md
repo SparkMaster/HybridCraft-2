@@ -18,3 +18,6 @@ Current Hybrid Craft Release: 2.1 Release 2
 Current Indev Hybrid Craft: 2.2 Beta 1
 
 Setup Hook to announce pushes on the IRC. :) SWEET!!
+
+Got all Kinks worked out with the IRC Hook. :D Works
+properly now.
