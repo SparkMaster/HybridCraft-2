@@ -21,3 +21,5 @@ Setup Hook to announce pushes on the IRC. :) SWEET!!
 
 Got all Kinks worked out with the IRC Hook. :D Works
 properly now.
+
+Seb is now able to push!!
