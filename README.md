@@ -1,9 +1,9 @@
 Welcome to Hybrid Craft 2 Git.. :) 
 
 Hybrid Craft 2 is maintained by 3 people. :D
-Heyguys..
-Me: SparkMaster..
-SebDaMuffin..
+Heyguys.. -- Photographer
+Me: SparkMaster.. -- Programmer/Texturer
+SebDaMuffin.. -- Programmer
 
 Hybrid craft is a mods folder mod. :D and it is really
 fun to use when you have chests full of dirt, sand, cobble
