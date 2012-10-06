@@ -64,6 +64,7 @@ public class HybridModIngotStuff {
 	static EnumToolMaterial obsidian = EnumHelper.addToolMaterial("obsidian", 3, 1233, 12.0F, 3, 14);
 	static EnumToolMaterial sand = EnumHelper.addToolMaterial("sand", 0, 35, 2.0F, 0, 14);
 	static EnumToolMaterial cobble = EnumHelper.addToolMaterial("cobble", 0, 75, 1.0F, 0, 14);
+	static EnumToolMaterial emerald = EnumHelper.addToolMaterial("emerald", 4, 2000, 20.0F, 3, 27);
 	
 	//Enums
 	//CLOTH(5, new int[]{1, 3, 2, 1}, 15),
@@ -87,6 +88,7 @@ public class HybridModIngotStuff {
 	static EnumArmorMaterial obsidiana = EnumHelper.addArmorMaterial("obsidian", 300, new int[]{10, 10, 10, 10}, 14);
 	static EnumArmorMaterial stonea = EnumHelper.addArmorMaterial("stone", 50, new int[]{2, 3, 2, 2}, 14);
 	static EnumArmorMaterial sanda = EnumHelper.addArmorMaterial("sand", 60, new int[]{2, 1, 2, 2,}, 14);
+	static EnumArmorMaterial emeralda = EnumHelper.addArmorMaterial("emerald", 500, new int[]{12, 12, 12, 12}, 27);
 	
 	//Tools
 	public static Item dirtsword;
@@ -159,6 +161,12 @@ public class HybridModIngotStuff {
 	public static Item cobbleaxe;
 	public static Item cobbleshovel;
 	public static Item cobblehoe;
+	public static Item emeraldsword;
+	public static Item emeraldpick;
+	public static Item emeraldaxe;
+	public static Item emeraldshovel;
+	public static Item emeraldhoe;
+	
 	
 	//Ingots
 	public static Item dirtIngot;
@@ -234,6 +242,10 @@ public class HybridModIngotStuff {
 	public static Item sandPlate;
 	public static Item sandLegs;
 	public static Item sandBoots;
+	public static Item emeraldHelmet;
+	public static Item emeraldPlate;
+	public static Item emeraldLegs;
+	public static Item emeraldBoots;
 	
 	//Ingot Blocks
 	public static Block dirtBlock;
@@ -262,23 +274,7 @@ public class HybridModIngotStuff {
 	public static BlockFlower goldFlower;
 	public static BlockFlower diamondFlower;
 	public static BlockFlower obsidianFlower;
-	
-	//Potion
-	
-	
-	//NPCs
-	
-	
-	//Chest
-	
-	
-	//Furnaces
-	
-	
-	//Crafting Tables
-	
-	
-	
+	public static BlockFlower emeraldFlower;
 	
 	//Config
 	public int dirtswordID;
@@ -444,6 +440,17 @@ public class HybridModIngotStuff {
 	public int cobbleaxeID;
 	public int cobbleshovelID;
 	public int cobblehoeID;
+	public int emeraldswordID;
+	public int emeraldpickID;
+	public int emeraldaxeID;
+	public int emeraldshovelID;
+	public int emeraldhoeID;
+	public int emeraldflowerID;
+	public int emeraldhelmetID;
+	public int emeraldplateID;
+	public int emeraldlegsID;
+	public int emeraldbootsID;
+	
 	
 @PreInit
 public void PreLoad(FMLPreInitializationEvent event){
@@ -614,6 +621,16 @@ public void PreLoad(FMLPreInitializationEvent event){
 	cobbleshovelID = config.get(CATEGORY_TOOL, "Cobble Shovel", 660).getInt();
 	cobblehoeID = config.get(CATEGORY_TOOL, "Cobble Hoe", 661).getInt();
 	obsidianFlowerID = config.get(CATEGORY_FLOWER, "Obsidian Flower", 666).getInt();
+	emeraldswordID = config.get(CATEGORY_TOOL, "Emerald Sword", 667).getInt();
+	emeraldpickID = config.get(CATEGORY_TOOL, "Emerald Pickaxe", 668).getInt();
+	emeraldaxeID = config.get(CATEGORY_TOOL, "Emerald Axe", 669).getInt();
+	emeraldshovelID = config.get(CATEGORY_TOOL, "Emerald Shovel", 670).getInt();
+	emeraldhoeID = config.get(CATEGORY_TOOL, "Emerald Hoe", 671).getInt();
+	emeraldflowerID = config.get(CATEGORY_FLOWER, "Emerald Flower", 672).getInt();
+	emeraldhelmetID = config.get(CATEGORY_ARMOR, "Emerald Helmet", 673).getInt();
+	emeraldplateID = config.get(CATEGORY_ARMOR, "Emerald Chestplate", 674).getInt();
+	emeraldlegsID = config.get(CATEGORY_ARMOR, "Emerald Leggings", 675).getInt();
+	emeraldbootsID = config.get(CATEGORY_ARMOR, "Emerald Boots", 676).getInt();
 	
 	config.save();
 	
@@ -693,6 +710,11 @@ public void load(FMLInitializationEvent event)
 	cobbleaxe = new ItemCobbleAxe(cobbleaxeID, cobble).setIconIndex(67).setItemName("cobbleaxe");
 	cobbleshovel = new ItemCobbleShovel(cobbleshovelID, cobble).setIconIndex(68).setItemName("cobbleshovel");
 	cobblehoe = new ItemCobbleHoe(cobblehoeID, cobble).setIconIndex(69).setItemName("cobblehoe");
+	emeraldsword = new ItemEmeraldSword(emeraldswordID, emerald).setIconIndex(70).setItemName("emeraldsword");
+	emeraldpick = new ItemEmeraldPick(emeraldpickID, emerald).setIconIndex(71).setItemName("emeraldpick");
+	emeraldaxe = new ItemEmeraldAxe(emeraldaxeID, emerald).setIconIndex(72).setItemName("emeraldaxe");
+	emeraldshovel = new ItemEmeraldShovel(emeraldshovelID, emerald).setIconIndex(73).setItemName("emeraldshovel");
+	emeraldhoe = new ItemEmeraldHoe(emeraldhoeID, emerald).setIconIndex(74).setItemName("emeraldhoe");
 	
 	
 	//Ingot
@@ -769,6 +791,10 @@ public void load(FMLInitializationEvent event)
 	sandPlate = new ArmorSand(sandPlateID, sanda, proxy.addArmor("Sand Plate"), 1).setItemName("sandPlate").setIconIndex(53);
 	sandLegs = new ArmorSand(sandLegsID, sanda, proxy.addArmor("Sand Legs"), 2).setItemName("sandLegs").setIconIndex(54);
 	sandBoots = new ArmorSand(sandBootsID, sanda, proxy.addArmor("Sand Boots"), 3).setItemName("sandBoots").setIconIndex(55);
+	emeraldHelmet = new ArmorEmerald(emeraldhelmetID, emeralda, proxy.addArmor("emerald Helmet"),0).setItemName("emeraldHelm").setIconIndex(56);
+	emeraldPlate = new ArmorEmerald(emeraldplateID, emeralda, proxy.addArmor("emerald Plate"), 1).setItemName("emeraldPlate").setIconIndex(57);
+	emeraldLegs = new ArmorEmerald(emeraldlegsID, emeralda, proxy.addArmor("emerald Legs"), 2).setItemName("emeraldLegs").setIconIndex(58);
+	emeraldBoots = new ArmorEmerald(emeraldbootsID, emeralda, proxy.addArmor("emerald Boots"), 3).setItemName("emeraldBoots").setIconIndex(59);
 	
 	
 	//Ingot Blocks
@@ -798,7 +824,7 @@ public void load(FMLInitializationEvent event)
 	goldFlower = (BlockFlower) new Flowers(goldFlowerID, 3).setBlockName("goldFlower");
 	diamondFlower = (BlockFlower) new Flowers(diamondFlowerID, 4).setBlockName("diamondFlower");
 	obsidianFlower = (BlockFlower) new Flowers(obsidianFlowerID, 5).setBlockName("obsidianFlower");
-	
+	emeraldFlower = (BlockFlower) new Flowers(emeraldflowerID, 6).setBlockName("emeraldFlower");
 	
 	//Tool Registry
 	LanguageRegistry.addName(dirtsword, "Dirt Sword");
@@ -871,6 +897,11 @@ public void load(FMLInitializationEvent event)
 	LanguageRegistry.addName(cobbleaxe, "Cobble Axe");
 	LanguageRegistry.addName(cobbleshovel, "Cobble Shovel");
 	LanguageRegistry.addName(cobblehoe, "Cobble Hoe");
+	LanguageRegistry.addName(emeraldsword, "Emerald Sword");
+	LanguageRegistry.addName(emeraldpick, "Emerald Pickaxe");
+	LanguageRegistry.addName(emeraldaxe, "Emerald Axe");
+	LanguageRegistry.addName(emeraldshovel, "Emerald Shovel");
+	LanguageRegistry.addName(emeraldhoe, "Emerald Hoe");
 	
 	//Ingot Registry
 	LanguageRegistry.addName(dirtIngot, "Dirt Ingot");
@@ -946,6 +977,10 @@ public void load(FMLInitializationEvent event)
 	LanguageRegistry.addName(sandPlate, "Sand Chestplate");
 	LanguageRegistry.addName(sandLegs, "Sand Legs");
 	LanguageRegistry.addName(sandBoots, "Sand Boots");
+	LanguageRegistry.addName(emeraldHelmet, "Emerald Helmet");
+	LanguageRegistry.addName(emeraldPlate, "Emerald Chestplate");
+	LanguageRegistry.addName(emeraldLegs, "Emerald Legs");
+	LanguageRegistry.addName(emeraldBoots, "Emerald Boots");
 	
 	//Ingot Block Registry
 	GameRegistry.registerBlock(dirtBlock);
@@ -993,12 +1028,14 @@ public void load(FMLInitializationEvent event)
 	GameRegistry.registerBlock(goldFlower);
 	GameRegistry.registerBlock(diamondFlower);
 	GameRegistry.registerBlock(obsidianFlower);
+	GameRegistry.registerBlock(emeraldFlower);
 	LanguageRegistry.addName(dirtFlower, "Dirt Flower");
 	LanguageRegistry.addName(stoneFlower, "Stone Flower");
 	LanguageRegistry.addName(ironFlower, "Iron Flower");
 	LanguageRegistry.addName(goldFlower, "Gold Flower");
 	LanguageRegistry.addName(diamondFlower, "Diamond Flower");
 	LanguageRegistry.addName(obsidianFlower, "Obsidian Flower");
+	LanguageRegistry.addName(emeraldFlower, "Emerald Flower");
 	
 	//Tool Recipes
 	GameRegistry.addRecipe(new ItemStack(dirtsword), new Object[]
@@ -1280,6 +1317,26 @@ public void load(FMLInitializationEvent event)
 	GameRegistry.addRecipe(new ItemStack(cobblehoe), new Object[]
 			{
 		"XX ", " S ", " S ", 'X', Block.cobblestone, 'S', Item.stick
+			});
+	GameRegistry.addRecipe(new ItemStack(emeraldsword), new Object[]
+			  {
+		"X", "X", "Z", 'X', Item.emerald, 'Z', Item.stick
+			  });
+	GameRegistry.addRecipe(new ItemStack(emeraldpick), new Object[]
+			{
+		"XXX", " S ", " S ", 'X', Item.emerald, 'S', Item.stick
+			});
+	GameRegistry.addRecipe(new ItemStack(emeraldaxe), new Object[]
+			{
+		"XX ", "XS ", " S ", 'X', Item.emerald, 'S', Item.stick
+			});
+	GameRegistry.addRecipe(new ItemStack(emeraldshovel), new Object[]
+			{
+		"X", "S", "S", 'X', Item.emerald, 'S', Item.stick
+			});
+	GameRegistry.addRecipe(new ItemStack(emeraldhoe), new Object[]
+			{
+		"XX ", " S ", " S ", 'X', Item.emerald, 'S', Item.stick
 			});
 	
 	//Ingot Recipes
@@ -1677,6 +1734,30 @@ public void load(FMLInitializationEvent event)
 			{
 		"   ", "X X", "X X", 'X', sandIngot,
 			});
+	GameRegistry.addRecipe(new ItemStack(emeraldHelmet), new Object[]
+			{
+		"XXX", "X X", "   ", 'X', Item.emerald,
+			});
+	GameRegistry.addRecipe(new ItemStack(emeraldHelmet), new Object[]
+			{
+		"   ", "XXX", "X X", 'X', Item.emerald,
+			});
+	GameRegistry.addRecipe(new ItemStack(emeraldPlate), new Object[]
+			{
+		"X X", "XXX", "XXX", 'X', Item.emerald,
+			});
+	GameRegistry.addRecipe(new ItemStack(emeraldLegs), new Object[]
+			{
+		"XXX", "X X", "X X", 'X', Item.emerald,
+			});
+	GameRegistry.addRecipe(new ItemStack(emeraldBoots), new Object[]
+			{
+		"X X", "X X", "   ", 'X', Item.emerald,
+			});
+	GameRegistry.addRecipe(new ItemStack(emeraldBoots), new Object[]
+			{
+		"   ", "X X", "X X", 'X', Item.emerald,
+			});
 	
 	//Block Recipes
 	GameRegistry.addRecipe(new ItemStack(dirtBlock, 1), new Object[]
@@ -1810,6 +1891,10 @@ public void load(FMLInitializationEvent event)
 	GameRegistry.addShapelessRecipe(new ItemStack(obsidianIngot, 1), new Object[]
 			{
 		new ItemStack(obsidianFlower)
+			});
+	GameRegistry.addShapelessRecipe(new ItemStack(Item.emerald, 1), new Object[]
+			{
+		new ItemStack(emeraldFlower)
 			});
 	
 	//Smelting
