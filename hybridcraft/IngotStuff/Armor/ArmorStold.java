@@ -1,9 +1,10 @@
-package hybridcraft.IngotStuff;
+package hybridcraft.IngotStuff.Armor;
 
+import hybridcraft.IngotStuff.HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
- import net.minecraft.src.ItemArmor;
- import net.minecraft.src.ItemStack;
- import net.minecraftforge.common.IArmorTextureProvider;
+import net.minecraft.src.ItemArmor;
+import net.minecraft.src.ItemStack;
+import net.minecraftforge.common.IArmorTextureProvider;
 
 public class ArmorStold extends ItemArmor implements IArmorTextureProvider{
 

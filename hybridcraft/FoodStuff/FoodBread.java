@@ -16,7 +16,7 @@ import net.minecraft.src.PotionEffect;
 
 import net.minecraft.src.World;
 
-public class ItemBaBFood extends ItemFood
+public class FoodBread extends ItemFood
 
 {
 
@@ -62,7 +62,7 @@ public class ItemBaBFood extends ItemFood
 
 	private float potionEffectProbability;
 
-	public ItemBaBFood(int par1, int par2, float par3, boolean par4)
+	public FoodBread(int par1, int par2, float par3, boolean par4)
 
 	{
 
@@ -88,7 +88,7 @@ public class ItemBaBFood extends ItemFood
 
 	}
 
-	public ItemBaBFood(int par1, int par2, boolean par3)
+	public FoodBread(int par1, int par2, boolean par3)
 
 	{
 
@@ -224,7 +224,7 @@ public class ItemBaBFood extends ItemFood
 	 * float probability of effect happening
 	 */
 
-	public ItemBaBFood setPotionEffect(int par1, int par2, int par3, float par4)
+	public FoodBread setPotionEffect(int par1, int par2, int par3, float par4)
 
 	{
 
@@ -246,7 +246,7 @@ public class ItemBaBFood extends ItemFood
 	 * the player don't need to eat.
 	 */
 
-	public ItemBaBFood setAlwaysEdible()
+	public FoodBread setAlwaysEdible()
 
 	{
 
@@ -255,7 +255,5 @@ public class ItemBaBFood extends ItemFood
 		return this;
 
 	}
-	
-	
 
 }
