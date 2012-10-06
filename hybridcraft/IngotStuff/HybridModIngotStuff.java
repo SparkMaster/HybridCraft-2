@@ -263,6 +263,7 @@ public class HybridModIngotStuff {
 	public static BlockFlower ironFlower;
 	public static BlockFlower goldFlower;
 	public static BlockFlower diamondFlower;
+	public static BlockFlower obsidianFlower;
 	
 	//Potion
 	
@@ -424,6 +425,7 @@ public class HybridModIngotStuff {
 	public int ironFlowerID;
 	public int goldFlowerID;
 	public int diamondFlowerID;
+	public int obsidianFlowerID;
 	public int sandIngotID;
 	public int sandBlockID;
 	public int stoneHelmetID;
@@ -613,6 +615,7 @@ public void PreLoad(FMLPreInitializationEvent event){
 	cobbleaxeID = config.get(CATEGORY_TOOL, "Cobble Axe", 659).getInt();
 	cobbleshovelID = config.get(CATEGORY_TOOL, "Cobble Shovel", 660).getInt();
 	cobblehoeID = config.get(CATEGORY_TOOL, "Cobble Hoe", 661).getInt();
+	obsidianFlowerID = config.get(CATEGORY_FLOWER, "Obsidian Flower", 666).getInt();
 	
 	config.save();
 	
@@ -796,6 +799,7 @@ public void load(FMLInitializationEvent event)
 	ironFlower = (BlockFlower) new FlowerIron(ironFlowerID, 2).setBlockName("ironFlower");
 	goldFlower = (BlockFlower) new FlowerGold(goldFlowerID, 3).setBlockName("goldFlower");
 	diamondFlower = (BlockFlower) new FlowerDiamond(diamondFlowerID, 4).setBlockName("diamondFlower");
+	obsidianFlower = (BlockFlower) new FlowerDiamond(obsidianFlowerID, 5).setBlockName("obsidianFlower");
 	
 	
 	//Tool Registry
@@ -990,11 +994,13 @@ public void load(FMLInitializationEvent event)
 	GameRegistry.registerBlock(ironFlower);
 	GameRegistry.registerBlock(goldFlower);
 	GameRegistry.registerBlock(diamondFlower);
+	GameRegistry.registerBlock(obsidianFlower);
 	LanguageRegistry.addName(dirtFlower, "Dirt Flower");
 	LanguageRegistry.addName(stoneFlower, "Stone Flower");
 	LanguageRegistry.addName(ironFlower, "Iron Flower");
 	LanguageRegistry.addName(goldFlower, "Gold Flower");
 	LanguageRegistry.addName(diamondFlower, "Diamond Flower");
+	LanguageRegistry.addName(obsidianFlower, "Obsidian Flower");
 	
 	//Tool Recipes
 	GameRegistry.addRecipe(new ItemStack(dirtsword), new Object[]
@@ -1802,6 +1808,10 @@ public void load(FMLInitializationEvent event)
 	GameRegistry.addShapelessRecipe(new ItemStack(Item.diamond, 1), new Object[]
 			{
 		new ItemStack(diamondFlower)
+			});
+	GameRegistry.addShapelessRecipe(new ItemStack(obsidianIngot, 1), new Object[]
+			{
+		new ItemStack(obsidianFlower)
 			});
 	
 	//Smelting
