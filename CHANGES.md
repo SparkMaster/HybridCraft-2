@@ -2,8 +2,11 @@ Please reclone the entire project after each push.
 
 ~Spark
 
-Added Decoration Blocks for Food HC2;
-Textures yet to come;
-Put all armor files in a folder. :D;
+Still Cleaning;
+Added Textures for Kitchen Decor;
+Added Stove;
+Added Counter/Cabinet;
+
+*Kitchen (DECOR) Does not have a use. Decor only. :D;
 
 Also Please put ( ; ) at the end of each change/line please. :D
