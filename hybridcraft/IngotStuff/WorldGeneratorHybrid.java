@@ -38,6 +38,7 @@ public class WorldGeneratorHybrid implements IWorldGenerator {
 		(new WorldGenFlowers(HybridModIngotStuff.ironFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
 		(new WorldGenFlowers(HybridModIngotStuff.goldFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
 		(new WorldGenFlowers(HybridModIngotStuff.diamondFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
+		(new WorldGenFlowers(HybridModIngotStuff.obsidianFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
 		}
 		
 		for(int o =0; o<10;o++){
