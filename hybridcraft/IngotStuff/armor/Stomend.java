@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
+import hybridcraft.IngotStuff.HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Stomend extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==mod_HybridModIngotStuff.stomendHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.stomendPlate.shiftedIndex||
- par1.itemID==mod_HybridModIngotStuff.stomendBoots.shiftedIndex){
+ if ( par1.itemID==HybridModIngotStuff.stomendHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.stomendPlate.shiftedIndex||
+ par1.itemID==HybridModIngotStuff.stomendBoots.shiftedIndex){
  return "/hc/armor/stomend_1.png";
- }if(par1.itemID==mod_HybridModIngotStuff.stomendLegs.shiftedIndex){
+ }if(par1.itemID==HybridModIngotStuff.stomendLegs.shiftedIndex){
  return "/hc/armor/stomend_2.png";
  }return "/hc/armor/stomend_2.png";
  }

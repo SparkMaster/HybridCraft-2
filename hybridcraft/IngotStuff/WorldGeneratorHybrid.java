@@ -25,27 +25,27 @@ public class WorldGeneratorHybrid implements IWorldGenerator {
 		int Xcoord = BlockX+random.nextInt(16);
 		int Zcoord = BlockZ+random.nextInt(16);
 		int Ycoord = 60+random.nextInt(16);
-		(new WorldGenMinable(mod_HybridModIngotStuff.dand.blockID, 15)).generate(world, random, Xcoord, Ycoord, Zcoord);
-		(new WorldGenMinable(mod_HybridModIngotStuff.davel.blockID, 15)).generate(world, random, Xcoord, Ycoord, Zcoord);
+		(new WorldGenMinable(HybridModIngotStuff.dand.blockID, 15)).generate(world, random, Xcoord, Ycoord, Zcoord);
+		(new WorldGenMinable(HybridModIngotStuff.davel.blockID, 15)).generate(world, random, Xcoord, Ycoord, Zcoord);
 		}
 		
 		for(int f =0; f<1;f++){
 		int Xcoordf = BlockX+random.nextInt(16);
 		int Zcoordf = BlockZ+random.nextInt(16);
 		int Ycoordf = random.nextInt(256);
-		(new WorldGenFlowers(mod_HybridModIngotStuff.dirtFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
-		(new WorldGenFlowers(mod_HybridModIngotStuff.stoneFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
-		(new WorldGenFlowers(mod_HybridModIngotStuff.ironFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
-		(new WorldGenFlowers(mod_HybridModIngotStuff.goldFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
-		(new WorldGenFlowers(mod_HybridModIngotStuff.diamondFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
-		(new WorldGenFlowers(mod_HybridModIngotStuff.obsidianFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
+		(new WorldGenFlowers(HybridModIngotStuff.dirtFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
+		(new WorldGenFlowers(HybridModIngotStuff.stoneFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
+		(new WorldGenFlowers(HybridModIngotStuff.ironFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
+		(new WorldGenFlowers(HybridModIngotStuff.goldFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
+		(new WorldGenFlowers(HybridModIngotStuff.diamondFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
+		(new WorldGenFlowers(HybridModIngotStuff.obsidianFlower.blockID)).generate(world, random, Xcoordf, Ycoordf, Zcoordf);
 		}
 		
 		for(int o =0; o<10;o++){
 		int Xcoordo = BlockX+random.nextInt(16);
 		int Zcoordo = BlockZ+random.nextInt(16);
 		int Ycoordo = random.nextInt(16);
-		(new WorldGenMinable(mod_HybridModIngotStuff.done.blockID, 15)).generate(world, random, Xcoordo, Ycoordo, Zcoordo);
+		(new WorldGenMinable(HybridModIngotStuff.done.blockID, 15)).generate(world, random, Xcoordo, Ycoordo, Zcoordo);
 		}
 	}
 	

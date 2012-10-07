@@ -27,7 +27,7 @@ public class AchievementList {
     public static Achievement dirtGainAchieve = (new Achievement(0, "dirtGain", 0, 0, Block.dirt, (Achievement)null)).setIndependent().registerAchievement();
     
     /** Make Dirt Ingot */
-	public static Achievement dirtIngotAchieve = (new Achievement(1, "dirtIngot", 0, 0, hybridcraft.IngotStuff.mod_HybridModIngotStuff.dirtIngot, dirtGainAchieve)).registerAchievement();
+	public static Achievement dirtIngotAchieve = (new Achievement(1, "dirtIngot", 0, 0, hybridcraft.IngotStuff.HybridModIngotStuff.dirtIngot, dirtGainAchieve)).registerAchievement();
 	
 	/**
      * A stub functions called to make the static initializer for this class run.

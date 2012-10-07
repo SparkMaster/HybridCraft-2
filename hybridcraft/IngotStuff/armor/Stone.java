@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
+import hybridcraft.IngotStuff.HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Stone extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==mod_HybridModIngotStuff.stoneHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.stonePlate.shiftedIndex||
- par1.itemID==mod_HybridModIngotStuff.stoneBoots.shiftedIndex){
+ if ( par1.itemID==HybridModIngotStuff.stoneHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.stonePlate.shiftedIndex||
+ par1.itemID==HybridModIngotStuff.stoneBoots.shiftedIndex){
  return "/hc/armor/stone_1.png";
- }if(par1.itemID==mod_HybridModIngotStuff.stoneLegs.shiftedIndex){
+ }if(par1.itemID==HybridModIngotStuff.stoneLegs.shiftedIndex){
  return "/hc/armor/stone_2.png";
  }return "/hc/armor/stone_2.png";
  }

@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
+import hybridcraft.IngotStuff.HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Storn extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==mod_HybridModIngotStuff.stornHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.stornPlate.shiftedIndex||
- par1.itemID==mod_HybridModIngotStuff.stornBoots.shiftedIndex){
+ if ( par1.itemID==HybridModIngotStuff.stornHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.stornPlate.shiftedIndex||
+ par1.itemID==HybridModIngotStuff.stornBoots.shiftedIndex){
  return "/hc/armor/storn_1.png";
- }if(par1.itemID==mod_HybridModIngotStuff.stornLegs.shiftedIndex){
+ }if(par1.itemID==HybridModIngotStuff.stornLegs.shiftedIndex){
  return "/hc/armor/storn_2.png";
  }return "/hc/armor/storn_2.png";
  }

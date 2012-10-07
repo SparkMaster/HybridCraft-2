@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
+import hybridcraft.IngotStuff.HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Stold extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==mod_HybridModIngotStuff.stoldHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.stoldPlate.shiftedIndex||
- par1.itemID==mod_HybridModIngotStuff.stoldBoots.shiftedIndex){
+ if ( par1.itemID==HybridModIngotStuff.stoldHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.stoldPlate.shiftedIndex||
+ par1.itemID==HybridModIngotStuff.stoldBoots.shiftedIndex){
  return "/hc/armor/stold_1.png";
- }if(par1.itemID==mod_HybridModIngotStuff.stoldLegs.shiftedIndex){
+ }if(par1.itemID==HybridModIngotStuff.stoldLegs.shiftedIndex){
  return "/hc/armor/stold_2.png";
  }return "/hc/armor/stold_2.png";
  }

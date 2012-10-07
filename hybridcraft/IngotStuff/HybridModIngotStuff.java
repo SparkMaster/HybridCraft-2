@@ -25,7 +25,7 @@ import hybridcraft.IngotStuff.armor.*;
 @Mod(modid = "HybridCraft 2 Materials", name = "HybridCraft 2 Materials", version = "2.2 beta 1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
-public class mod_HybridModIngotStuff extends BaseMod  {
+public class HybridModIngotStuff implements ICraftingHandler   {
 	
 	//Proxy
 	@SidedProxy(clientSide = "hybrid.client.ClientProxyHybrid", serverSide = "hybridcraft.IngotStuff.CommonProxyHybrid")
@@ -445,21 +445,16 @@ public class mod_HybridModIngotStuff extends BaseMod  {
 	public int emeraldplateID;
 	public int emeraldlegsID;
 	public int emeraldbootsID;
-	
 
-
-//@PreInit
-//public void PreLoad(FMLPreInitializationEvent event){
-//
-//	
-//	
-//	
-//}
 	
-@Init
-public void load() //FMLInitializationEvent event)
-{
-	Configuration config = new Configuration(new java.io.File("C:\test.log"));
+@PreInit
+public void preload(FMLPreInitializationEvent event) {
+	
+	// register the crafting listener
+	GameRegistry.registerCraftingHandler(this);
+	
+	// configure item numbers
+	Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 	
 //	config.load();
 	
@@ -638,6 +633,11 @@ public void load() //FMLInitializationEvent event)
 	emeraldbootsID = config.get(CATEGORY_ARMOR, "Emerald Boots", 676).getInt();
 	
 	//config.save();
+}
+	
+@Init
+public void load(FMLInitializationEvent event)
+{
 	
 	//Tools
 	dirtsword = new hybridcraft.IngotStuff.tool.dirt.Sword(dirtswordID, dirt).setIconIndex(0).setItemName("dirtsword");
@@ -1905,95 +1905,94 @@ public void load() //FMLInitializationEvent event)
 }
 
 	@Override
-	public String getVersion() {
+	public void onCrafting(EntityPlayer player, ItemStack item,
+			IInventory craftMatrix) {
 		// TODO Auto-generated method stub
-		return "2.2 beta 1";
-	}
 
-	@Override
-	public void takenFromCrafting(EntityPlayer entityPlayer, ItemStack itemStack, IInventory iinventory) {
-		if (itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Hoe) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
-		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Hoe ) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
-			
+		// add enchantments
+		// dirt = silkTouch
+		// stone = efficiency
+		// iron = sharpness
+		// gold = looting
+		// diamond = fortune
 
-		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Hoe ) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
-
-		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Hoe ) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
-
-		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Hoe ) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
-
-		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Hoe ) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
-
-		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Hoe ) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
-
-		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Hoe ) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
-
-		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Hoe ) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
-
-		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Axe ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Sword ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Shovel ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Pick ||
-				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Hoe ) {
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
-			itemStack.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
+		if (item.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
+		} else if (item.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
+		} else if (item.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
+		} else if (item.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
+		} else if (item.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
+		} else if (item.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
+		} else if (item.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
+		} else if (item.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
+		} else if (item.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
+		} else if (item.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Axe
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Sword
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Shovel
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Pick
+				|| item.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Hoe) {
+			item.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
+			item.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
 		}
 	}
 
-
+	@Override
+	public void onSmelting(EntityPlayer player, ItemStack item) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

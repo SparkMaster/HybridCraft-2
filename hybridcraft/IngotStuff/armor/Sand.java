@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
+import hybridcraft.IngotStuff.HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Sand extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==mod_HybridModIngotStuff.sandHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.sandPlate.shiftedIndex||
- par1.itemID==mod_HybridModIngotStuff.sandBoots.shiftedIndex){
+ if ( par1.itemID==HybridModIngotStuff.sandHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.sandPlate.shiftedIndex||
+ par1.itemID==HybridModIngotStuff.sandBoots.shiftedIndex){
  return "/hc/armor/sand_1.png";
- }if(par1.itemID==mod_HybridModIngotStuff.sandLegs.shiftedIndex){
+ }if(par1.itemID==HybridModIngotStuff.sandLegs.shiftedIndex){
  return "/hc/armor/sand_2.png";
  }return "/hc/armor/sand_2.png";
  }
