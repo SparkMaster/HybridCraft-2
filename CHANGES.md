@@ -6,6 +6,7 @@ Still Cleaning;
 Added Textures for Kitchen Decor;
 Added Stove;
 Added Counter/Cabinet;
+Added enchantments to crafted hybrid tools;
 
 *Kitchen (DECOR) Does not have a use. Decor only. :D;
 

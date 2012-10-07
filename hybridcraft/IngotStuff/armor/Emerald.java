@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.HybridModIngotStuff;
+import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Emerald extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==HybridModIngotStuff.emeraldHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.emeraldPlate.shiftedIndex||
- par1.itemID==HybridModIngotStuff.emeraldBoots.shiftedIndex){
+ if ( par1.itemID==mod_HybridModIngotStuff.emeraldHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.emeraldPlate.shiftedIndex||
+ par1.itemID==mod_HybridModIngotStuff.emeraldBoots.shiftedIndex){
  return "/hc/armor/emerald_1.png";
- }if(par1.itemID==HybridModIngotStuff.emeraldLegs.shiftedIndex){
+ }if(par1.itemID==mod_HybridModIngotStuff.emeraldLegs.shiftedIndex){
  return "/hc/armor/emerald_2.png";
  }return "/hc/armor/emerald_2.png";
  }

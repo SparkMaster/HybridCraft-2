@@ -7,14 +7,10 @@
 	
 package hybridcraft.IngotStuff;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockFlower;
-import net.minecraft.src.EnumArmorMaterial;
-import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
+import net.minecraft.src.*;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
+import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -25,14 +21,11 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import hybridcraft.IngotStuff.armor.*;
-//import hybridcraft.IngotStuff.tool.*;
 
 @Mod(modid = "HybridCraft 2 Materials", name = "HybridCraft 2 Materials", version = "2.2 beta 1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
-
-
-public class HybridModIngotStuff {
+public class mod_HybridModIngotStuff extends BaseMod  {
 	
 	//Proxy
 	@SidedProxy(clientSide = "hybrid.client.ClientProxyHybrid", serverSide = "hybridcraft.IngotStuff.CommonProxyHybrid")
@@ -453,10 +446,20 @@ public class HybridModIngotStuff {
 	public int emeraldlegsID;
 	public int emeraldbootsID;
 	
+
+
+//@PreInit
+//public void PreLoad(FMLPreInitializationEvent event){
+//
+//	
+//	
+//	
+//}
 	
-@PreInit
-public void PreLoad(FMLPreInitializationEvent event){
-	Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+@Init
+public void load() //FMLInitializationEvent event)
+{
+	Configuration config = new Configuration(new java.io.File("C:\test.log"));
 	
 //	config.load();
 	
@@ -634,13 +637,8 @@ public void PreLoad(FMLPreInitializationEvent event){
 	emeraldlegsID = config.get(CATEGORY_ARMOR, "Emerald Leggings", 675).getInt();
 	emeraldbootsID = config.get(CATEGORY_ARMOR, "Emerald Boots", 676).getInt();
 	
-	config.save();
+	//config.save();
 	
-}
-	
-@Init
-public void load(FMLInitializationEvent event)
-{
 	//Tools
 	dirtsword = new hybridcraft.IngotStuff.tool.dirt.Sword(dirtswordID, dirt).setIconIndex(0).setItemName("dirtsword");
 	dirtpick = new hybridcraft.IngotStuff.tool.dirt.Pick(dirtpickID, dirt).setIconIndex(1).setItemName("dirtpick");
@@ -1905,5 +1903,97 @@ public void load(FMLInitializationEvent event)
 	
 	proxy.registerRenderThings();
 }
+
+	@Override
+	public String getVersion() {
+		// TODO Auto-generated method stub
+		return "2.2 beta 1";
+	}
+
+	@Override
+	public void takenFromCrafting(EntityPlayer entityPlayer, ItemStack itemStack, IInventory iinventory) {
+		if (itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirtone.Hoe) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
+		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirold.Hoe ) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
+			
+
+		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.diron.Hoe ) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
+
+		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.dirmend.Hoe ) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.silkTouch, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
+
+		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.gomend.Hoe ) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
+
+		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irmend.Hoe ) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
+
+		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.storn.Hoe ) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
+
+		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stold.Hoe ) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
+
+		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.stomend.Hoe ) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.efficiency, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.fortune, 1);
+
+		} else if(itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Axe ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Sword ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Shovel ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Pick ||
+				itemStack.getItem() instanceof hybridcraft.IngotStuff.tool.irold.Hoe ) {
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.looting, 1);
+			itemStack.addEnchantment(net.minecraft.src.Enchantment.sharpness, 1);
+		}
+	}
+
+
 
 }

@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.HybridModIngotStuff;
+import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Diron extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==HybridModIngotStuff.dironHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.dironPlate.shiftedIndex||
- par1.itemID==HybridModIngotStuff.dironBoots.shiftedIndex){
+ if ( par1.itemID==mod_HybridModIngotStuff.dironHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.dironPlate.shiftedIndex||
+ par1.itemID==mod_HybridModIngotStuff.dironBoots.shiftedIndex){
  return "/hc/armor/diron_1.png";
- }if(par1.itemID==HybridModIngotStuff.dironLegs.shiftedIndex){
+ }if(par1.itemID==mod_HybridModIngotStuff.dironLegs.shiftedIndex){
  return "/hc/armor/diron_2.png";
  }return "/hc/armor/diron_2.png";
  }

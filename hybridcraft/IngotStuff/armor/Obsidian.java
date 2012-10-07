@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.HybridModIngotStuff;
+import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Obsidian extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==HybridModIngotStuff.obsidianHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.obsidianPlate.shiftedIndex||
- par1.itemID==HybridModIngotStuff.obsidianBoots.shiftedIndex){
+ if ( par1.itemID==mod_HybridModIngotStuff.obsidianHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.obsidianPlate.shiftedIndex||
+ par1.itemID==mod_HybridModIngotStuff.obsidianBoots.shiftedIndex){
  return "/hc/armor/obsidian_1.png";
- }if(par1.itemID==HybridModIngotStuff.obsidianLegs.shiftedIndex){
+ }if(par1.itemID==mod_HybridModIngotStuff.obsidianLegs.shiftedIndex){
  return "/hc/armor/obsidian_2.png";
  }return "/hc/armor/obsidian_2.png";
  }

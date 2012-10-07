@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.HybridModIngotStuff;
+import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Dirmend extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==HybridModIngotStuff.dirmendHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.dirmendPlate.shiftedIndex||
- par1.itemID==HybridModIngotStuff.dirmendBoots.shiftedIndex){
+ if ( par1.itemID==mod_HybridModIngotStuff.dirmendHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.dirmendPlate.shiftedIndex||
+ par1.itemID==mod_HybridModIngotStuff.dirmendBoots.shiftedIndex){
  return "/hc/armor/dirmend_1.png";
- }if(par1.itemID==HybridModIngotStuff.dirmendLegs.shiftedIndex){
+ }if(par1.itemID==mod_HybridModIngotStuff.dirmendLegs.shiftedIndex){
  return "/hc/armor/dirmend_2.png";
  }return "/hc/armor/dirmend_2.png";
  }

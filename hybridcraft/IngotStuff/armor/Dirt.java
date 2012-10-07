@@ -1,6 +1,6 @@
 package hybridcraft.IngotStuff.armor;
 
-import hybridcraft.IngotStuff.HybridModIngotStuff;
+import hybridcraft.IngotStuff.mod_HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.ItemArmor;
 import net.minecraft.src.ItemStack;
@@ -19,10 +19,10 @@ public class Dirt extends ItemArmor implements IArmorTextureProvider{
  }
 
  public String getArmorTextureFile(ItemStack par1){
- if ( par1.itemID==HybridModIngotStuff.dirtHelmet.shiftedIndex|| par1.itemID==HybridModIngotStuff.dirtPlate.shiftedIndex||
- par1.itemID==HybridModIngotStuff.dirtBoots.shiftedIndex){
+ if ( par1.itemID==mod_HybridModIngotStuff.dirtHelmet.shiftedIndex|| par1.itemID==mod_HybridModIngotStuff.dirtPlate.shiftedIndex||
+ par1.itemID==mod_HybridModIngotStuff.dirtBoots.shiftedIndex){
  return "/hc/armor/dirt_1.png";
- }if(par1.itemID==HybridModIngotStuff.dirtLegs.shiftedIndex){
+ }if(par1.itemID==mod_HybridModIngotStuff.dirtLegs.shiftedIndex){
  return "/hc/armor/dirt_2.png";
  }return "/hc/armor/dirt_2.png";
  }
