@@ -1,6 +1,7 @@
 package hybridcraft.FoodStuff.kitchen;
 
 import net.minecraft.src.*;
+import hybridcraft.FoodStuff.HybridModFoodStuff;
 
 public class ContainerStove extends ContainerWorkbench {
 
@@ -24,6 +25,6 @@ public class ContainerStove extends ContainerWorkbench {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
-		return this.worldObj.getBlockId(this.posX, this.posY, this.posZ) != hybridcraft.FoodStuff.HybridModFoodStuff.Stove.blockID ? false : par1EntityPlayer.getDistanceSq((double) this.posX + 0.5D, (double) this.posY + 0.5D, (double) this.posZ + 0.5D) <= 64.0D;
+		return this.worldObj.getBlockId(this.posX, this.posY, this.posZ) != HybridModFoodStuff.Stove.blockID ? false : par1EntityPlayer.getDistanceSq((double) this.posX + 0.5D, (double) this.posY + 0.5D, (double) this.posZ + 0.5D) <= 64.0D && (this.worldObj.getBlockId(this.posX + 1, this.posY, this.posZ) == HybridModFoodStuff.Counter.blockID || this.worldObj.getBlockId(this.posX - 1, this.posY, this.posZ) == HybridModFoodStuff.Counter.blockID || this.worldObj.getBlockId(this.posX, this.posY, this.posZ + 1) == HybridModFoodStuff.Counter.blockID || this.worldObj.getBlockId(this.posX, this.posY, this.posZ - 1) == HybridModFoodStuff.Counter.blockID);
 	}
 }

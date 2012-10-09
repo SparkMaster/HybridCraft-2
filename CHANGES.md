@@ -10,7 +10,8 @@ Added enchantments to crafted hybrid tools;
 Added combiner to make hybrid ores;
 Added sandwiches and ingredients for them;
 Made Counter and Stove work as crafting blocks;
-
+Added fruit salad and apple pie;
+Stove and counter now depend on each other;
 
 *Kitchen (DECOR) Does not have a use. Decor only. :D;
 

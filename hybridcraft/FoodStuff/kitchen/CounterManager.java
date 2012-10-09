@@ -22,7 +22,9 @@ public class CounterManager extends AbstractCraftingManager {
 	public static Item beefSandwich;
 	public static Item beefSandwichBacon;
 	public static Item meatSandwich;
-
+	public static Item applePie;
+	public static Item fruitSalad;
+	public static Item appleSlice;
 	private CounterManager() {
 
 		// Classify Items
@@ -35,6 +37,9 @@ public class CounterManager extends AbstractCraftingManager {
 		beefSandwich = new Sandwich(907, 10).setIconIndex(6).setItemName("Beef Sandwich");
 		beefSandwichBacon = new Sandwich(908, 10).setIconIndex(7).setItemName("Pork Sandwich");
 		meatSandwich = new Sandwich(909, 9).setIconIndex(8).setItemName("Meat Sandwich");
+		applePie = new Sandwich(910, 10).setIconIndex(11).setItemName("Apple Pie");
+		fruitSalad = new Sandwich(911, 9).setIconIndex(10).setItemName("Fruit Salad");
+		appleSlice = new Sandwich(912, 1).setIconIndex(9).setItemName("Apple Slice");
 
 		// Register Items
 		LanguageRegistry.addName(breadSlice, "Bread Slice");
@@ -46,6 +51,9 @@ public class CounterManager extends AbstractCraftingManager {
 		LanguageRegistry.addName(beefSandwich, "Beef Sandwich");
 		LanguageRegistry.addName(beefSandwichBacon, "Beef Sandwich with Bacon");
 		LanguageRegistry.addName(meatSandwich, "Meat Sandwich");
+		LanguageRegistry.addName(applePie, "Apple Pie");
+		LanguageRegistry.addName(fruitSalad, "Fruit Salad");
+		LanguageRegistry.addName(appleSlice, "Apple Slice");
 
 		// Shaped Item Recipes
 		this.addRecipe(new ItemStack(chickenSandwich), new Object[] { " X ", "ZZ ", " X ", 'X', breadSlice, 'Z', chickenStrips });
@@ -60,5 +68,8 @@ public class CounterManager extends AbstractCraftingManager {
 		this.addShapelessRecipe(new ItemStack(chickenStrips, 2), Item.chickenCooked);
 		this.addShapelessRecipe(new ItemStack(beefSlices, 2), Item.beefCooked);
 		this.addShapelessRecipe(new ItemStack(bacon, 2), Item.porkCooked);
+		this.addShapelessRecipe(new ItemStack(appleSlice, 4), Item.appleRed);
+		this.addShapelessRecipe(new ItemStack(applePie, 1), Item.wheat, Item.wheat, Item.wheat, appleSlice, appleSlice, appleSlice, appleSlice, appleSlice, Item.egg);
+		this.addShapelessRecipe(new ItemStack(fruitSalad, 1), Item.bowlEmpty, appleSlice, appleSlice, appleSlice, Item.melon, Item.melon, Item.melon, Item.sugar, Item.sugar);
 	}
 }
