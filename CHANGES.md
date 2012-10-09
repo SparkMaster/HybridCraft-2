@@ -7,6 +7,8 @@ Added Textures for Kitchen Decor;
 Added Stove;
 Added Counter/Cabinet;
 Added enchantments to crafted hybrid tools;
+Added combiner to make hybrid ores;
+
 
 *Kitchen (DECOR) Does not have a use. Decor only. :D;
 

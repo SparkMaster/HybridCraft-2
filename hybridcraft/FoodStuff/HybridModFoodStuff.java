@@ -1,6 +1,7 @@
 package hybridcraft.FoodStuff;
 
 import hybridcraft.IngotStuff.CommonProxyHybrid;
+import hybridcraft.IngotStuff.HybridModIngotStuff;
 import hybridcraft.IngotStuff.IngotBlock;
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockWorkbench;
@@ -9,6 +10,7 @@ import net.minecraft.src.ItemStack;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -17,7 +19,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @Mod(modid = "HybridCraft 2 Food", name = "HybridCraft 2 Food", version = "2.2 beta 1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class HybridModFoodStuff {
-
+	
 	@SidedProxy(clientSide = "hybrid.client.ClientProxyHybrid", serverSide = "hybridcraft.IngotStuff.CommonProxyHybrid")
 	public static CommonProxyHybrid proxy;
 	
