@@ -32,7 +32,8 @@ public class HybridModFoodStuff {
 
 	@Init
 	public void load(FMLInitializationEvent event) {
-
+		CounterManager.getInstance();
+		StoveManager.getInstance();
 		// Register GUIs
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 

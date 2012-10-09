@@ -1,168 +1,64 @@
 package hybridcraft.FoodStuff.kitchen;
 
 import net.minecraft.src.*;
-import java.util.*;
+import hybridcraft.AbstractCraftingManager;
+import hybridcraft.FoodStuff.*;
 import cpw.mods.fml.common.registry.*;
 
-public class CounterManager {
+public class CounterManager extends AbstractCraftingManager {
 
-	/** The static instance of this class */
 	private static final CounterManager instance = new CounterManager();
 
-	/** A list of all the recipes added */
-	private List recipes = new ArrayList();
-
-	/**
-	 * Returns the static instance of this class
-	 */
-	public static final CounterManager getInstance() {
+	public static CounterManager getInstance() {
 		return instance;
 	}
 
+	public static Item breadSlice;
+	public static Item chickenStrips;
+	public static Item beefSlices;
+	public static Item bacon;
+	public static Item chickenSandwich;
+	public static Item chickenSandwichBacon;
+	public static Item beefSandwich;
+	public static Item beefSandwichBacon;
+	public static Item meatSandwich;
+
 	private CounterManager() {
 
-		System.out.println(this.recipes.size() + " recipes");
-	}
+		// Classify Items
+		breadSlice = new Sandwich(901, 1).setIconIndex(0).setItemName("Bread Slice");
+		chickenStrips = new Sandwich(902, 3).setIconIndex(1).setItemName("Chicken Strips");
+		beefSlices = new Sandwich(903, 4).setIconIndex(2).setItemName("Beef Slice");
+		bacon = new Sandwich(904, 4).setIconIndex(3).setItemName("Bacon");
+		chickenSandwich = new Sandwich(905, 8).setIconIndex(4).setItemName("Chicken Sandwich");
+		chickenSandwichBacon = new Sandwich(906, 9).setIconIndex(5).setItemName("Chicken Sandwich");
+		beefSandwich = new Sandwich(907, 10).setIconIndex(6).setItemName("Beef Sandwich");
+		beefSandwichBacon = new Sandwich(908, 10).setIconIndex(7).setItemName("Pork Sandwich");
+		meatSandwich = new Sandwich(909, 9).setIconIndex(8).setItemName("Meat Sandwich");
 
-	/**
-	 * Adds a recipe. See spreadsheet on first page for details.
-	 */
-	public void addRecipe(ItemStack par1ItemStack, Object... par2ArrayOfObj) {
-		String var3 = "";
-		int var4 = 0;
-		int var5 = 0;
-		int var6 = 0;
-		int var9;
+		// Register Items
+		LanguageRegistry.addName(breadSlice, "Bread Slice");
+		LanguageRegistry.addName(chickenStrips, "Chicken Strips");
+		LanguageRegistry.addName(beefSlices, "Beef Slices");
+		LanguageRegistry.addName(bacon, "Bacon");
+		LanguageRegistry.addName(chickenSandwich, "Chicken Sandwich");
+		LanguageRegistry.addName(chickenSandwichBacon, "Chicken Sandwich with Bacon");
+		LanguageRegistry.addName(beefSandwich, "Beef Sandwich");
+		LanguageRegistry.addName(beefSandwichBacon, "Beef Sandwich with Bacon");
+		LanguageRegistry.addName(meatSandwich, "Meat Sandwich");
 
-		if (par2ArrayOfObj[var4] instanceof String[]) {
-			String[] var7 = (String[]) ((String[]) par2ArrayOfObj[var4++]);
-			String[] var8 = var7;
-			var9 = var7.length;
+		// Shaped Item Recipes
+		this.addRecipe(new ItemStack(chickenSandwich), new Object[] { " X ", "ZZ ", " X ", 'X', breadSlice, 'Z', chickenStrips });
+		this.addRecipe(new ItemStack(chickenSandwichBacon), new Object[] { " X ", "YZ ", " X ", 'X', breadSlice, 'Z', chickenStrips, 'Y', bacon });
+		this.addRecipe(new ItemStack(beefSandwich), new Object[] { " X ", "ZZ ", " X ", 'X', breadSlice, 'Z', beefSlices });
+		this.addRecipe(new ItemStack(beefSandwichBacon), new Object[] { " X ", "YZ ", " X ", 'X', breadSlice, 'Z', beefSlices, 'Y', bacon });
+		this.addRecipe(new ItemStack(meatSandwich), new Object[] { " X ", "YZ ", " X ", 'X', breadSlice, 'Z', chickenStrips, 'Y', beefSlices });
+		this.addRecipe(new ItemStack(meatSandwich), new Object[] { " X ", "ZY ", " X ", 'X', breadSlice, 'Z', chickenStrips, 'Y', beefSlices });
 
-			for (int var10 = 0; var10 < var9; ++var10) {
-				String var11 = var8[var10];
-				++var6;
-				var5 = var11.length();
-				var3 = var3 + var11;
-			}
-		} else {
-			while (par2ArrayOfObj[var4] instanceof String) {
-				String var13 = (String) par2ArrayOfObj[var4++];
-				++var6;
-				var5 = var13.length();
-				var3 = var3 + var13;
-			}
-		}
-
-		HashMap var14;
-
-		for (var14 = new HashMap(); var4 < par2ArrayOfObj.length; var4 += 2) {
-			Character var16 = (Character) par2ArrayOfObj[var4];
-			ItemStack var17 = null;
-
-			if (par2ArrayOfObj[var4 + 1] instanceof Item) {
-				var17 = new ItemStack((Item) par2ArrayOfObj[var4 + 1]);
-			} else if (par2ArrayOfObj[var4 + 1] instanceof Block) {
-				var17 = new ItemStack((Block) par2ArrayOfObj[var4 + 1], 1, -1);
-			} else if (par2ArrayOfObj[var4 + 1] instanceof ItemStack) {
-				var17 = (ItemStack) par2ArrayOfObj[var4 + 1];
-			}
-
-			var14.put(var16, var17);
-		}
-
-		ItemStack[] var15 = new ItemStack[var5 * var6];
-
-		for (var9 = 0; var9 < var5 * var6; ++var9) {
-			char var18 = var3.charAt(var9);
-
-			if (var14.containsKey(Character.valueOf(var18))) {
-				var15[var9] = ((ItemStack) var14.get(Character.valueOf(var18))).copy();
-			} else {
-				var15[var9] = null;
-			}
-		}
-
-		this.recipes.add(new ShapedRecipes(var5, var6, var15, par1ItemStack));
-	}
-
-	public void addShapelessRecipe(ItemStack par1ItemStack, Object... par2ArrayOfObj) {
-		ArrayList var3 = new ArrayList();
-		Object[] var4 = par2ArrayOfObj;
-		int var5 = par2ArrayOfObj.length;
-
-		for (int var6 = 0; var6 < var5; ++var6) {
-			Object var7 = var4[var6];
-
-			if (var7 instanceof ItemStack) {
-				var3.add(((ItemStack) var7).copy());
-			} else if (var7 instanceof Item) {
-				var3.add(new ItemStack((Item) var7));
-			} else {
-				if (!(var7 instanceof Block)) {
-					throw new RuntimeException("Invalid shapeless recipy!");
-				}
-
-				var3.add(new ItemStack((Block) var7));
-			}
-		}
-
-		this.recipes.add(new ShapelessRecipes(par1ItemStack, var3));
-	}
-
-	public ItemStack findMatchingRecipe(InventoryCrafting par1InventoryCrafting) {
-		int var2 = 0;
-		ItemStack var3 = null;
-		ItemStack var4 = null;
-
-		for (int var5 = 0; var5 < par1InventoryCrafting.getSizeInventory(); ++var5) {
-			ItemStack var6 = par1InventoryCrafting.getStackInSlot(var5);
-
-			if (var6 != null) {
-				if (var2 == 0) {
-					var3 = var6;
-				}
-
-				if (var2 == 1) {
-					var4 = var6;
-				}
-
-				++var2;
-			}
-		}
-
-		if (var2 == 2 && var3.itemID == var4.itemID && var3.stackSize == 1 && var4.stackSize == 1 && Item.itemsList[var3.itemID].isRepairable()) {
-			Item var10 = Item.itemsList[var3.itemID];
-			int var12 = var10.getMaxDamage() - var3.getItemDamageForDisplay();
-			int var7 = var10.getMaxDamage() - var4.getItemDamageForDisplay();
-			int var8 = var12 + var7 + var10.getMaxDamage() * 10 / 100;
-			int var9 = var10.getMaxDamage() - var8;
-
-			if (var9 < 0) {
-				var9 = 0;
-			}
-
-			return new ItemStack(var3.itemID, 1, var9);
-		} else {
-			Iterator var11 = this.recipes.iterator();
-			IRecipe var13;
-
-			do {
-				if (!var11.hasNext()) {
-					return null;
-				}
-
-				var13 = (IRecipe) var11.next();
-			} while (!var13.matches(par1InventoryCrafting));
-
-			return var13.getCraftingResult(par1InventoryCrafting);
-		}
-	}
-
-	/**
-	 * returns the List<> of all recipes
-	 */
-	public List getRecipeList() {
-		return this.recipes;
+		// Shapeless Item Recipes
+		this.addShapelessRecipe(new ItemStack(breadSlice, 5), Item.bread);
+		this.addShapelessRecipe(new ItemStack(chickenStrips, 2), Item.chickenCooked);
+		this.addShapelessRecipe(new ItemStack(beefSlices, 2), Item.beefCooked);
+		this.addShapelessRecipe(new ItemStack(bacon, 2), Item.porkCooked);
 	}
 }

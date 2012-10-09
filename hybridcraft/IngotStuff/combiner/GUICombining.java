@@ -1,7 +1,5 @@
 package hybridcraft.IngotStuff.combiner;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.src.*;
 
 public class GUICombining extends GuiContainer {
@@ -17,7 +15,7 @@ public class GUICombining extends GuiContainer {
 
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
 		int i = mc.renderEngine.getTexture("/gui/crafting.png");
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		org.lwjgl.opengl.GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.renderEngine.bindTexture(i);
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
