@@ -1,15 +1,9 @@
-package hybridcraft.IngotStuff;
+package hybridcraft.IngotStuff.combiner;
 
 import net.minecraft.src.*;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+import hybridcraft.IngotStuff.Ingot;
+import java.util.*;
+import cpw.mods.fml.common.registry.*;
 
 public class CombiningManager {
 	
@@ -25,59 +19,33 @@ public class CombiningManager {
 	public static final CombiningManager getInstance() {
 		return instance;
 	}
-
-	static Item dirtoneIngot;
-	static Item dironIngot;
-	static Item diroldIngot;
-	static Item dirmendIngot;
-	static Item stoneIngot;
-	static Item stornIngot;
-	static Item stoldIngot;
-	static Item stomendIngot;
-	static Item iroldIngot;
-	static Item irmendIngot;
-	static Item gomendIngot;
+	
+	public static Item dirtoneIngot;
+	public static Item dironIngot;
+	public static Item diroldIngot;
+	public static Item dirmendIngot;
+	public static Item stoneIngot;
+	public static Item stornIngot;
+	public static Item stoldIngot;
+	public static Item stomendIngot;
+	public static Item iroldIngot;
+	public static Item irmendIngot;
+	public static Item gomendIngot;
 
 	private CombiningManager() {
 
-		// Ingots
-
-		final int dirtoneIngotID;
-		final int dironIngotID;
-		final int diroldIngotID;
-		final int dirmendIngotID;
-		final int stoneIngotID;
-		final int stornIngotID;
-		final int stoldIngotID;
-		final int stomendIngotID;
-		final int iroldIngotID;
-		final int irmendIngotID;
-		final int gomendIngotID;
-
-		dirtoneIngotID = 561;
-		dironIngotID = 562;
-		diroldIngotID = 563;
-		dirmendIngotID = 564;
-		stoneIngotID = 565;
-		stornIngotID = 566;
-		stoldIngotID = 567;
-		stomendIngotID = 568;
-		iroldIngotID = 569;
-		irmendIngotID = 570;
-		gomendIngotID = 571;
-
 		// Ingot
-		dirtoneIngot = new Ingot(dirtoneIngotID).setIconIndex(1).setItemName("dirtoneIngot");
-		dironIngot = new Ingot(dironIngotID).setIconIndex(2).setItemName("dironIngot");
-		diroldIngot = new Ingot(diroldIngotID).setIconIndex(3).setItemName("diroldIngot");
-		dirmendIngot = new Ingot(dirmendIngotID).setIconIndex(4).setItemName("dirmendIngot");
-		stoneIngot = new Ingot(stoneIngotID).setIconIndex(5).setItemName("stoneIngot");
-		stornIngot = new Ingot(stornIngotID).setIconIndex(6).setItemName("stornIngot");
-		stoldIngot = new Ingot(stoldIngotID).setIconIndex(7).setItemName("stoldIngot");
-		stomendIngot = new Ingot(stomendIngotID).setIconIndex(8).setItemName("stormendIngot");
-		iroldIngot = new Ingot(iroldIngotID).setIconIndex(9).setItemName("iroldIngot");
-		irmendIngot = new Ingot(irmendIngotID).setIconIndex(10).setItemName("irmendIngot");
-		gomendIngot = new Ingot(gomendIngotID).setIconIndex(11).setItemName("gomendIngot");
+		dirtoneIngot = new Ingot(561).setIconIndex(1).setItemName("dirtoneIngot");
+		dironIngot = new Ingot(562).setIconIndex(2).setItemName("dironIngot");
+		diroldIngot = new Ingot(563).setIconIndex(3).setItemName("diroldIngot");
+		dirmendIngot = new Ingot(564).setIconIndex(4).setItemName("dirmendIngot");
+		stoneIngot = new Ingot(565).setIconIndex(5).setItemName("stoneIngot");
+		stornIngot = new Ingot(566).setIconIndex(6).setItemName("stornIngot");
+		stoldIngot = new Ingot(567).setIconIndex(7).setItemName("stoldIngot");
+		stomendIngot = new Ingot(568).setIconIndex(8).setItemName("stormendIngot");
+		iroldIngot = new Ingot(569).setIconIndex(9).setItemName("iroldIngot");
+		irmendIngot = new Ingot(570).setIconIndex(10).setItemName("irmendIngot");
+		gomendIngot = new Ingot(571).setIconIndex(11).setItemName("gomendIngot");
 
 		// Ingot Registry
 		LanguageRegistry.addName(dirtoneIngot, "Dirtone Ingot");

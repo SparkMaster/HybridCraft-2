@@ -1,5 +1,6 @@
-package hybridcraft.IngotStuff;
+package hybridcraft.IngotStuff.combiner;
 
+import hybridcraft.IngotStuff.HybridModIngotStuff;
 import net.minecraft.src.*;
 
 

@@ -22,10 +22,10 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import hybridcraft.IngotStuff.armor.*;
-import hybridcraft.IngotStuff.CombiningManager;
+import hybridcraft.IngotStuff.combiner.*;
 
 @Mod(modid = "HybridCraft 2 Materials", name = "HybridCraft 2 Materials", version = "2.2 beta 1")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(clientSideRequired = true, serverSideRequired = true)
 public class HybridModIngotStuff implements ICraftingHandler {
 
 	// Instance
@@ -431,13 +431,9 @@ public class HybridModIngotStuff implements ICraftingHandler {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 
 		obsidianShardID = config.get(CATEGORY_INGOT, "Obsidian Shard", 572).getInt();
-		;
 		obsidianIngotID = config.get(CATEGORY_INGOT, "Obsidian Ingot", 573).getInt();
-		;
 		sandIngotID = config.get(CATEGORY_INGOT, "Sand Ingot", 642).getInt();
-		;
 		dirtIngotID = config.get(CATEGORY_INGOT, "Dirt Ingot", 560).getInt();
-		;
 
 		dirtswordID = config.get(CATEGORY_TOOL, "Dirt Sword", 500).getInt();
 		dirtpickID = config.get(CATEGORY_TOOL, "Dirt Pickaxe", 501).getInt();
@@ -1069,65 +1065,6 @@ public class HybridModIngotStuff implements ICraftingHandler {
 		GameRegistry.addRecipe(new ItemStack(emeraldshovel), new Object[] { "X", "S", "S", 'X', Item.emerald, 'S', Item.stick });
 		GameRegistry.addRecipe(new ItemStack(emeraldhoe), new Object[] { "XX ", " S ", " S ", 'X', Item.emerald, 'S', Item.stick });
 
-		// Ingot Recipes
-		// GameRegistry.addRecipe(new ItemStack(dirtIngot), new Object[]
-		// {
-		// "XXX", "XXX", "XXX", 'X', Block.dirt
-		// });
-		// GameRegistry.addRecipe(new ItemStack(dirtoneIngot), new Object[]
-		// {
-		// "XXX", "SSS", "XXX", 'X', Block.dirt, 'S', Block.stone,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(dironIngot), new Object[]
-		// {
-		// "XXX", "XIX", "XXX", 'X', Block.dirt, 'I', Item.ingotIron,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(diroldIngot), new Object[]
-		// {
-		// "XXX", "XGX", "XXX", 'X', Block.dirt, 'G', Item.ingotGold,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(dirmendIngot), new Object[]
-		// {
-		// "XXX", "XDX", "XXX", 'X', Block.dirt, 'D', Item.diamond,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(stoneIngot), new Object[]
-		// {
-		// "XXX", "XXX", "XXX", 'X', Block.stone,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(stornIngot), new Object[]
-		// {
-		// "XXX", "XIX", "XXX", 'X', Block.stone, 'I', Item.ingotIron,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(stoldIngot), new Object[]
-		// {
-		// "XXX", "XGX", "XXX", 'X', Block.stone, 'G', Item.ingotGold,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(stomendIngot), new Object[]
-		// {
-		// "XXX", "XDX", "XXX", 'X', Block.stone, 'D', Item.diamond,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(iroldIngot), new Object[]
-		// {
-		// "GXG", "XGX", "GXG", 'X', Item.ingotIron, 'G', Item.ingotGold,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(irmendIngot), new Object[]
-		// {
-		// "XXX", "XDX", "XXX", 'X', Item.ingotIron, 'D', Item.diamond,
-		// });
-		// GameRegistry.addRecipe(new ItemStack(gomendIngot), new Object[]
-		// {
-		// "GGG", "GDG", "GGG", 'D', Item.diamond, 'G', Item.ingotGold,
-		// });
-		// GameRegistry.addShapelessRecipe(new ItemStack(obsidianShard, 12), new
-		// Object[]
-		// {
-		// new ItemStack(Block.obsidian), new ItemStack(Item.pickaxeDiamond)
-		// });
-		// GameRegistry.addRecipe(new ItemStack(sandIngot), new Object[]
-		// {
-		// "SSS", "SSS", "SSS", 'S', Block.sand
-		// });
-		//
 		// //Armor Recipes
 		GameRegistry.addRecipe(new ItemStack(dirtHelmet), new Object[] { "XXX", "X X", "   ", 'X', dirtIngot, });
 		GameRegistry.addRecipe(new ItemStack(dirtHelmet), new Object[] { "   ", "XXX", "X X", 'X', dirtIngot, });

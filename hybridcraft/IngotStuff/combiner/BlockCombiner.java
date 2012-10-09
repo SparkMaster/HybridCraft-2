@@ -1,5 +1,6 @@
-package hybridcraft.IngotStuff;
+package hybridcraft.IngotStuff.combiner;
 
+import hybridcraft.IngotStuff.HybridModIngotStuff;
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockWorkbench;
 import net.minecraft.src.ContainerWorkbench;
@@ -15,7 +16,7 @@ import net.minecraft.src.World;
 
 public class BlockCombiner extends BlockWorkbench {
 
-	protected BlockCombiner(int par1) {
+	public BlockCombiner(int par1) {
 		super(par1);
 		
         this.setCreativeTab(CreativeTabs.tabDecorations);
