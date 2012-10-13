@@ -43,9 +43,9 @@ public class HybridModFoodStuff {
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
 		// Classify Blocks
-		counter = new BlockCounter(679).setBlockName("Counter");
-		stove = new BlockStove(678).setBlockName("Stove");
-		cookingPot = new BlockCookingPot(916 + 256).setBlockName("Cooking Pot");
+		counter = new BlockCounter(hybridcraft.Config.counterID).setBlockName("Counter");
+		stove = new BlockStove(hybridcraft.Config.stoveID).setBlockName("Stove");
+		cookingPot = new BlockCookingPot(hybridcraft.Config.potID).setBlockName("Cooking Pot");
 
 		// Register Blocks
 		GameRegistry.registerBlock(stove);

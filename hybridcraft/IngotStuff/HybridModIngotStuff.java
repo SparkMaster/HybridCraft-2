@@ -6,21 +6,32 @@
 
 package hybridcraft.IngotStuff;
 
-import net.minecraft.src.*;
-import net.minecraftforge.common.*;
-import cpw.mods.fml.common.*;
+import hybridcraft.Config;
+import hybridcraft.IngotStuff.armor.*;
+import hybridcraft.IngotStuff.hybridizer.BlockHybridizer;
+import hybridcraft.IngotStuff.hybridizer.GuiHandler;
+import hybridcraft.IngotStuff.hybridizer.HybridizingManager;
+import net.minecraft.src.Block;
+import net.minecraft.src.BlockFlower;
+import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraft.src.EnumToolMaterial;
+import net.minecraft.src.IInventory;
+import net.minecraft.src.Item;
+import net.minecraft.src.ItemStack;
+import net.minecraftforge.common.EnumHelper;
+import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
-import cpw.mods.fml.common.event.*;
-import cpw.mods.fml.common.network.*;
-import cpw.mods.fml.common.registry.*;
-import hybridcraft.IngotStuff.armor.*;
-import hybridcraft.IngotStuff.hybridizer.*;
-import hybridcraft.Config;
-import hybridcraft.Config.*;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = "HybridCraft 2 Materials", name = "HybridCraft 2 Materials", version = "2.2 beta 1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)

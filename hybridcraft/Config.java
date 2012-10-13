@@ -16,6 +16,7 @@ public class Config {
 	public static final String CATEGORY_INGOT = "ingots";
 	public static final String CATEGORY_ARMOR = "armors";
 	public static final String CATEGORY_FLOWER = "flowers";
+	public static final String CATEGORY_KITCHEN = "kitchen";
 
 	public static int  dirtswordID;
 	public static int  dirtpickID;
@@ -180,6 +181,9 @@ public class Config {
 	public static int  obsidianIngotID;
 	public static int  sandIngotID;
 	public static int  dirtIngotID;
+	public static int  counterID;
+	public static int  stoveID;
+	public static int  potID;
 
 	public Config(FMLPreInitializationEvent event) {
 		
@@ -350,7 +354,10 @@ public class Config {
 		emeraldlegsID = config.get(CATEGORY_ARMOR, "Emerald Leggings", 675).getInt();
 		emeraldbootsID = config.get(CATEGORY_ARMOR, "Emerald Boots", 676).getInt();
 		combinerID = config.get(CATEGORY_ARMOR, "Emerald Boots", 677).getInt();
-
+		counterID = config.get(CATEGORY_KITCHEN, "Counter", 678).getInt();
+		stoveID = config.get(CATEGORY_ARMOR, "Stove", 679).getInt();
+		potID = config.get(CATEGORY_KITCHEN, "Cooking Pot", 680).getInt();
+		
 	}
 
 }
