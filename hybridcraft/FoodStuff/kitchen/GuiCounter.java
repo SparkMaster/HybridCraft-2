@@ -2,9 +2,9 @@ package hybridcraft.FoodStuff.kitchen;
 
 import net.minecraft.src.*;
 
-public class GuiCounter extends GuiContainer {
+public class GUICounter extends GuiContainer {
 
-	public GuiCounter(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5) {
+	public GUICounter(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5) {
 		super(new ContainerCounter(par1InventoryPlayer, par2World, par3, par4, par5));
 	}
 

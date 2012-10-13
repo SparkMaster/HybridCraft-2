@@ -2,17 +2,8 @@ Please reclone the entire project after each push.
 
 ~Spark
 
-Still Cleaning;
-Added Textures for Kitchen Decor;
-Added Stove;
-Added Counter/Cabinet;
-Added enchantments to crafted hybrid tools;
-Added combiner to make hybrid ores;
-Added sandwiches and ingredients for them;
-Made Counter and Stove work as crafting blocks;
-Added fruit salad and apple pie;
-Stove and counter now depend on each other;
+Cleaned up even more;
+Made enchantments random upon crafting;
+Revamped Config Settings;
 
-*Kitchen (DECOR) Does not have a use. Decor only. :D;
-
-Also Please put ( ; ) at the end of each change/line please. :D
+Just Cleaning up on this push. :)

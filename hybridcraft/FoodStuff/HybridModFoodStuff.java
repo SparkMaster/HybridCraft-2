@@ -24,42 +24,32 @@ public class HybridModFoodStuff {
 	public static CommonProxyHybrid proxy;
 
 	// Declare Blocks
-	public static Block stove;
-	public static Block counter;
-	public static Block cookingPot;
-	
+	public static Block Stove;
+	public static Block Counter;
+
 	// Counter/Stove GUIs
 	private GuiHandler guiHandler = new GuiHandler();
 
 	@Init
 	public void load(FMLInitializationEvent event) {
-		
-		// Initialize managers on startup
 		CounterManager.getInstance();
 		StoveManager.getInstance();
-		CookingPotManager.getInstance();
-		
 		// Register GUIs
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
 		// Classify Blocks
-		counter = new BlockCounter(679).setBlockName("Counter");
-		stove = new BlockStove(678).setBlockName("Stove");
-		cookingPot = new BlockCookingPot(916 + 256).setBlockName("Cooking Pot");
+		Counter = new BlockCounter(679).setBlockName("Counter");
+		Stove = new BlockStove(678).setBlockName("Stove");
 
 		// Register Blocks
-		GameRegistry.registerBlock(stove);
-		GameRegistry.registerBlock(counter);
-		GameRegistry.registerBlock(cookingPot);
-		
-		LanguageRegistry.addName(stove, "Stove");
-		LanguageRegistry.addName(counter, "Counter");
-		LanguageRegistry.addName(cookingPot, "Cooking Pot");
+		GameRegistry.registerBlock(Stove);
+		GameRegistry.registerBlock(Counter);
+		LanguageRegistry.addName(Stove, "Stove");
+		LanguageRegistry.addName(Counter, "Counter");
 
 		// Shaped Block Recipes
-		GameRegistry.addRecipe(new ItemStack(stove, 1), new Object[] { "XXX", "XCX", "XXX", 'X', Item.ingotIron, 'C', Item.coal });
-		GameRegistry.addRecipe(new ItemStack(counter, 1), new Object[] { "SSS", "XXX", "XXX", 'X', Block.wood, 'S', Block.stone });
-		GameRegistry.addRecipe(new ItemStack(cookingPot, 1), new Object[] { "X X", "X X", "XWX", 'X', Item.ingotIron, 'W', Item.bucketWater });
+		GameRegistry.addRecipe(new ItemStack(Stove, 1), new Object[] { "XXX", "XCX", "XXX", 'X', Item.ingotIron, 'C', Item.coal, });
+		GameRegistry.addRecipe(new ItemStack(Counter, 3), new Object[] { "SSS", "XXX", "XXX", 'X', Block.wood, 'S', Block.stone, });
 
 	}
 }

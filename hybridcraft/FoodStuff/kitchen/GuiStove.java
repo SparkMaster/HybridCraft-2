@@ -2,9 +2,9 @@ package hybridcraft.FoodStuff.kitchen;
 
 import net.minecraft.src.*;
 
-public class GuiStove extends GuiContainer {
+public class GUIStove extends GuiContainer {
 
-	public GuiStove(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5) {
+	public GUIStove(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5) {
 		super(new ContainerStove(par1InventoryPlayer, par2World, par3, par4, par5));
 	}
 

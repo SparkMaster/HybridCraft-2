@@ -1,4 +1,4 @@
-package hybridcraft.IngotStuff.armor;
+package hybridcraft.IngotStuff.Armor;
 
 import hybridcraft.IngotStuff.HybridModIngotStuff;
 import net.minecraft.src.EnumArmorMaterial;

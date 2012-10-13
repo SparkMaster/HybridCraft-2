@@ -25,7 +25,6 @@ public class CounterManager extends AbstractCraftingManager {
 	public static Item applePie;
 	public static Item fruitSalad;
 	public static Item appleSlice;
-	
 	private CounterManager() {
 
 		// Classify Items
@@ -38,9 +37,9 @@ public class CounterManager extends AbstractCraftingManager {
 		beefSandwich = new Sandwich(907, 10).setIconIndex(6).setItemName("Beef Sandwich");
 		beefSandwichBacon = new Sandwich(908, 10).setIconIndex(7).setItemName("Pork Sandwich");
 		meatSandwich = new Sandwich(909, 9).setIconIndex(8).setItemName("Meat Sandwich");
-		appleSlice = new Sandwich(910, 1).setIconIndex(9).setItemName("Apple Slice");
+		applePie = new Sandwich(910, 10).setIconIndex(11).setItemName("Apple Pie");
 		fruitSalad = new Sandwich(911, 9).setIconIndex(10).setItemName("Fruit Salad");
-		applePie = new Sandwich(912, 10).setIconIndex(11).setItemName("Apple Pie");
+		appleSlice = new Sandwich(912, 1).setIconIndex(9).setItemName("Apple Slice");
 
 		// Register Items
 		LanguageRegistry.addName(breadSlice, "Bread Slice");
@@ -72,6 +71,5 @@ public class CounterManager extends AbstractCraftingManager {
 		this.addShapelessRecipe(new ItemStack(appleSlice, 4), Item.appleRed);
 		this.addShapelessRecipe(new ItemStack(applePie, 1), Item.wheat, Item.wheat, Item.wheat, appleSlice, appleSlice, appleSlice, appleSlice, appleSlice, Item.egg);
 		this.addShapelessRecipe(new ItemStack(fruitSalad, 1), Item.bowlEmpty, appleSlice, appleSlice, appleSlice, Item.melon, Item.melon, Item.melon, Item.sugar, Item.sugar);
-		System.out.println(this.recipes.size() + " recipes");
 	}
 }
