@@ -29,18 +29,18 @@ public class CounterManager extends AbstractCraftingManager {
 	private CounterManager() {
 
 		// Classify Items
-		breadSlice = new Sandwich(901, 1).setIconIndex(0).setItemName("Bread Slice");
-		chickenStrips = new Sandwich(902, 3).setIconIndex(1).setItemName("Chicken Strips");
-		beefSlices = new Sandwich(903, 4).setIconIndex(2).setItemName("Beef Slice");
-		bacon = new Sandwich(904, 4).setIconIndex(3).setItemName("Bacon");
-		chickenSandwich = new Sandwich(905, 8).setIconIndex(4).setItemName("Chicken Sandwich");
-		chickenSandwichBacon = new Sandwich(906, 9).setIconIndex(5).setItemName("Chicken Sandwich");
-		beefSandwich = new Sandwich(907, 10).setIconIndex(6).setItemName("Beef Sandwich");
-		beefSandwichBacon = new Sandwich(908, 10).setIconIndex(7).setItemName("Pork Sandwich");
-		meatSandwich = new Sandwich(909, 9).setIconIndex(8).setItemName("Meat Sandwich");
-		appleSlice = new Sandwich(910, 1).setIconIndex(9).setItemName("Apple Slice");
-		fruitSalad = new Sandwich(911, 9).setIconIndex(10).setItemName("Fruit Salad");
-		applePie = new Sandwich(912, 10).setIconIndex(11).setItemName("Apple Pie");
+		breadSlice = new Sandwich(hybridcraft.Config.breadSliceID, 1).setIconIndex(0).setItemName("Bread Slice");
+		chickenStrips = new Sandwich(hybridcraft.Config.chickenStripsID, 3).setIconIndex(1).setItemName("Chicken Strips");
+		beefSlices = new Sandwich(hybridcraft.Config.beefSlicesID, 4).setIconIndex(2).setItemName("Beef Slice");
+		bacon = new Sandwich(hybridcraft.Config.baconID, 4).setIconIndex(3).setItemName("Bacon");
+		chickenSandwich = new Sandwich(hybridcraft.Config.chickenSandwichID, 8).setIconIndex(4).setItemName("Chicken Sandwich");
+		chickenSandwichBacon = new Sandwich(hybridcraft.Config.chickenSandwichBaconID, 9).setIconIndex(5).setItemName("Chicken Sandwich");
+		beefSandwich = new Sandwich(hybridcraft.Config.beefSandwichID, 10).setIconIndex(6).setItemName("Beef Sandwich");
+		beefSandwichBacon = new Sandwich(hybridcraft.Config.beefSandwichBaconID, 10).setIconIndex(7).setItemName("Pork Sandwich");
+		meatSandwich = new Sandwich(hybridcraft.Config.meatSandwichID, 9).setIconIndex(8).setItemName("Meat Sandwich");
+		appleSlice = new Sandwich(hybridcraft.Config.appleSliceID, 1).setIconIndex(9).setItemName("Apple Slice");
+		fruitSalad = new Sandwich(hybridcraft.Config.fruitSaladID, 9).setIconIndex(10).setItemName("Fruit Salad");
+		applePie = new Sandwich(hybridcraft.Config.applePieID, 10).setIconIndex(11).setItemName("Apple Pie");
 
 		// Register Items
 		LanguageRegistry.addName(breadSlice, "Bread Slice");

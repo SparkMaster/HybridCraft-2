@@ -3,6 +3,7 @@ package hybridcraft;
 import hybridcraft.IngotStuff.hybridizer.GuiHandler;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
+import net.minecraft.src.Item;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -17,6 +18,7 @@ public class Config {
 	public static final String CATEGORY_ARMOR = "armors";
 	public static final String CATEGORY_FLOWER = "flowers";
 	public static final String CATEGORY_KITCHEN = "kitchen";
+	public static final String CATEGORY_FOOD = "food";
 
 	public static int  dirtswordID;
 	public static int  dirtpickID;
@@ -184,6 +186,21 @@ public class Config {
 	public static int  counterID;
 	public static int  stoveID;
 	public static int  potID;
+	public static int  breadSliceID;
+	public static int  chickenStripsID;
+	public static int  beefSlicesID;
+	public static int  baconID;
+	public static int  chickenSandwichID;
+	public static int  chickenSandwichBaconID;
+	public static int  beefSandwichID;
+	public static int  beefSandwichBaconID;
+	public static int  meatSandwichID;
+	public static int  applePieID;
+	public static int  fruitSaladID;
+	public static int  appleSliceID;
+	public static int  bowlChickenID;
+	public static int  bowlBeefID;
+	public static int  bowlMeatID;
 
 	public Config(FMLPreInitializationEvent event) {
 		
@@ -357,6 +374,21 @@ public class Config {
 		counterID = config.get(CATEGORY_KITCHEN, "Counter", 678).getInt();
 		stoveID = config.get(CATEGORY_ARMOR, "Stove", 679).getInt();
 		potID = config.get(CATEGORY_KITCHEN, "Cooking Pot", 680).getInt();
+		breadSliceID = config.get(CATEGORY_FOOD, "Slice of Bread", 681).getInt();
+		chickenStripsID = config.get(CATEGORY_FOOD, "Chicken Tender", 682).getInt();
+		beefSlicesID = config.get(CATEGORY_FOOD, "Beef Slice", 683).getInt();
+		baconID = config.get(CATEGORY_FOOD, "Bacon", 684).getInt();
+		chickenSandwichID = config.get(CATEGORY_FOOD, "Chicken Sandwich", 685).getInt();
+		chickenSandwichBaconID = config.get(CATEGORY_FOOD, "Chicken Sandwich with Bacon", 686).getInt();
+		beefSandwichID = config.get(CATEGORY_FOOD, "Beef Sandwich", 687).getInt();
+		beefSandwichBaconID = config.get(CATEGORY_FOOD, "Beef Sandwich with Bacon", 688).getInt();
+		meatSandwichID = config.get(CATEGORY_FOOD, "Meat Sandwich", 689).getInt();
+		applePieID = config.get(CATEGORY_FOOD, "Apple Pie", 690).getInt();
+		fruitSaladID = config.get(CATEGORY_FOOD, "Fruit Salad", 691).getInt();
+		appleSliceID = config.get(CATEGORY_FOOD, "Apple Slice", 692).getInt();
+		bowlChickenID = config.get(CATEGORY_FOOD, "Bowl of Chicken", 693).getInt();
+		bowlBeefID = config.get(CATEGORY_FOOD, "Bowl of Beef", 694).getInt();
+		bowlMeatID = config.get(CATEGORY_FOOD, "Bowl of Meat", 695).getInt();
 		
 	}
 

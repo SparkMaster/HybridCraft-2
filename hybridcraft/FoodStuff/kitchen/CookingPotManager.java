@@ -21,9 +21,9 @@ public class CookingPotManager extends AbstractCraftingManager {
 	private CookingPotManager() {
 
 		// Classify Items
-		bowlChicken = new Sandwich(913, 9).setIconIndex(12).setItemName("Chicken Soup");
-		bowlBeef = new Sandwich(914, 8).setIconIndex(13).setItemName("Beef Stew");
-		bowlMeat = new Sandwich(915, 10).setIconIndex(14).setItemName("Broth");
+		bowlChicken = new Sandwich(hybridcraft.Config.bowlChickenID, 9).setIconIndex(12).setItemName("Chicken Soup");
+		bowlBeef = new Sandwich(hybridcraft.Config.bowlBeefID, 8).setIconIndex(13).setItemName("Beef Stew");
+		bowlMeat = new Sandwich(hybridcraft.Config.bowlMeatID, 10).setIconIndex(14).setItemName("Broth");
 		
 		// Register Items
 		LanguageRegistry.addName(bowlChicken, "Chicken Soup");
