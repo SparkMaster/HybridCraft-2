@@ -18,7 +18,7 @@ public class StoveManager extends AbstractCraftingManager {
 	public static Item PaB;
 	public static Item CaB;
 	public static Item DogBread;
-
+	
 	private StoveManager() {
 
 		// Classify Items
@@ -26,13 +26,13 @@ public class StoveManager extends AbstractCraftingManager {
 		PaB = new FoodBread(664, 10, false).setIconIndex(1).setItemName("pab");
 		CaB = new FoodBread(665, 10, false).setIconIndex(2).setItemName("cab");
 		DogBread = new FoodBread(677, 10, true).setIconIndex(3).setItemName("db");
-
+		
 		// Register Items
 		LanguageRegistry.addName(BaB, "Beef and Bread");
 		LanguageRegistry.addName(PaB, "Pork and Bread");
 		LanguageRegistry.addName(CaB, "Chicken and Bread");
 		LanguageRegistry.addName(DogBread, "Dog Treat");
-
+		
 		// Shaped Item Recipes
 		this.addRecipe(new ItemStack(CaB, 2), new Object[] { "BB ", " B ", " BB", 'B', Item.bread });
 

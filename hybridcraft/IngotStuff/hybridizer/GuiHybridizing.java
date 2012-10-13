@@ -1,15 +1,15 @@
-package hybridcraft.FoodStuff.kitchen;
+package hybridcraft.IngotStuff.hybridizer;
 
 import net.minecraft.src.*;
 
-public class GUICounter extends GuiContainer {
+public class GuiHybridizing extends GuiContainer {
 
-	public GUICounter(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5) {
-		super(new ContainerCounter(par1InventoryPlayer, par2World, par3, par4, par5));
+	public GuiHybridizing(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5) {
+		super(new ContainerHybridizer(par1InventoryPlayer, par2World, par3, par4, par5));
 	}
 
 	protected void drawGuiContainerForegroundLayer() {
-		fontRenderer.drawString("Counter", 28, 6, 0x404040);
+		fontRenderer.drawString("Hybridizing", 28, 6, 0x404040);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
 	}
 

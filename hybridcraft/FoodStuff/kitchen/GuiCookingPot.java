@@ -2,14 +2,14 @@ package hybridcraft.FoodStuff.kitchen;
 
 import net.minecraft.src.*;
 
-public class GUIStove extends GuiContainer {
+public class GuiCookingPot extends GuiContainer {
 
-	public GUIStove(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5) {
-		super(new ContainerStove(par1InventoryPlayer, par2World, par3, par4, par5));
+	public GuiCookingPot(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5) {
+		super(new ContainerCookingPot(par1InventoryPlayer, par2World, par3, par4, par5));
 	}
 
 	protected void drawGuiContainerForegroundLayer() {
-		fontRenderer.drawString("Stove", 28, 6, 0x404040);
+		fontRenderer.drawString("Cooking Pot", 28, 6, 0x404040);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, (ySize - 96) + 2, 0x404040);
 	}
 

@@ -7,22 +7,18 @@
 package hybridcraft.IngotStuff;
 
 import net.minecraft.src.*;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.EnumHelper;
-import cpw.mods.fml.common.ICraftingHandler;
+import net.minecraftforge.common.*;
+import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.network.*;
+import cpw.mods.fml.common.registry.*;
 import hybridcraft.IngotStuff.armor.*;
-import hybridcraft.IngotStuff.combiner.*;
+import hybridcraft.IngotStuff.hybridizer.*;
 
 @Mod(modid = "HybridCraft 2 Materials", name = "HybridCraft 2 Materials", version = "2.2 beta 1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
@@ -161,7 +157,8 @@ public class HybridModIngotStuff implements ICraftingHandler {
 	public static Item obsidianShard;
 	public static Item obsidianIngot;
 	public static Item sandIngot;
-
+	public static Item stoneIngot;
+	
 	// Armors
 	public static Item dirtHelmet;
 	public static Item dirtPlate;
@@ -254,7 +251,7 @@ public class HybridModIngotStuff implements ICraftingHandler {
 	public static BlockFlower emeraldFlower;
 
 	// Crafting
-	public static BlockCombiner blockCombiner;
+	public static BlockHybridizer blockHybridizer;
 
 	// Config
 	public int dirtswordID;
@@ -681,6 +678,7 @@ public class HybridModIngotStuff implements ICraftingHandler {
 		obsidianIngot = new Ingot(obsidianIngotID).setIconIndex(13).setItemName("obsidianIngot");
 		sandIngot = new Ingot(sandIngotID).setIconIndex(14).setItemName("sandIngot");
 		dirtIngot = new Ingot(dirtIngotID).setIconIndex(0).setItemName("dirtIngot");
+		stoneIngot = new Ingot(565).setIconIndex(5).setItemName("stoneIngot");
 
 		// Armors
 		dirtHelmet = new Dirt(dirtHelmetID, dirta, proxy.addArmor("Dirt Helmet"), 0).setItemName("dirtHelm").setIconIndex(0);
@@ -774,7 +772,7 @@ public class HybridModIngotStuff implements ICraftingHandler {
 		emeraldFlower = (BlockFlower) new Flowers(emeraldflowerID, 6).setBlockName("emeraldFlower");
 
 		// Combiner
-		blockCombiner = (BlockCombiner) new BlockCombiner(combinerID).setBlockName("Combiner");
+		blockHybridizer = (BlockHybridizer) new BlockHybridizer(combinerID).setBlockName("Hybridizer");
 
 		// Register combiner GUI
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
@@ -861,6 +859,7 @@ public class HybridModIngotStuff implements ICraftingHandler {
 		LanguageRegistry.addName(obsidianIngot, "Obsidian Ingot");
 		LanguageRegistry.addName(sandIngot, "Sand Ingot");
 		LanguageRegistry.addName(dirtIngot, "Dirt Ingot");
+		LanguageRegistry.addName(stoneIngot, "Stone Ingot");
 
 		// Armor Registry
 		LanguageRegistry.addName(dirtHelmet, "Dirt Helmet");
@@ -980,70 +979,69 @@ public class HybridModIngotStuff implements ICraftingHandler {
 		LanguageRegistry.addName(emeraldFlower, "Emerald Flower");
 
 		// Combiner
-		GameRegistry.registerBlock(blockCombiner);
-		LanguageRegistry.addName(blockCombiner, "Combiner");
+		GameRegistry.registerBlock(blockHybridizer);
+		LanguageRegistry.addName(blockHybridizer, "Hybridizer");
 
 		// //Tool Recipes
 
 		GameRegistry.addShapelessRecipe(new ItemStack(obsidianShard, 12), new Object[] { new ItemStack(Block.obsidian), new ItemStack(Item.pickaxeDiamond) });
 		GameRegistry.addRecipe(new ItemStack(sandIngot), new Object[] { "SSS", "SSS", "SSS", 'S', Block.sand });
 		GameRegistry.addRecipe(new ItemStack(dirtIngot), new Object[] { "XXX", "XXX", "XXX", 'X', Block.dirt });
-
 		GameRegistry.addRecipe(new ItemStack(dirtsword), new Object[] { "X", "X", "Z", 'X', dirtIngot, 'Z', Item.stick });
 		GameRegistry.addRecipe(new ItemStack(dirtpick), new Object[] { "XXX", " S ", " S ", 'X', dirtIngot, 'S', Item.stick });
 		GameRegistry.addRecipe(new ItemStack(dirtaxe), new Object[] { "XX ", "XS ", " S ", 'X', dirtIngot, 'S', Item.stick });
 		GameRegistry.addRecipe(new ItemStack(dirtshovel), new Object[] { "X", "S", "S", 'X', dirtIngot, 'S', Item.stick });
 		GameRegistry.addRecipe(new ItemStack(dirthoe), new Object[] { "XX ", " S ", " S ", 'X', dirtIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirtonesword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().dirtoneIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirtonepick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().dirtoneIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirtoneaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().dirtoneIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirtoneshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().dirtoneIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirtonehoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().dirtoneIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dironsword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().dironIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dironpick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().dironIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dironaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().dironIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dironshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().dironIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dironhoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().dironIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(diroldsword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().diroldIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(diroldpick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().diroldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(diroldaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().diroldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(diroldshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().diroldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(diroldhoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().diroldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirmendsword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().dirmendIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirmendpick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().dirmendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirmendaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().dirmendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirmendshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().dirmendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(dirmendhoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().dirmendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stornsword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().stornIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stornpick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().stornIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stornaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().stornIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stornshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().stornIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stornhoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().stornIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stoldsword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().stoldIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stoldpick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().stoldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stoldaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().stoldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stoldshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().stoldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stoldhoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().stoldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stomendsword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().stomendIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stomendpick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().stomendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stomendaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().stomendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stomendshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().stomendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(stomendhoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().stomendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(iroldsword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().iroldIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(iroldpick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().iroldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(iroldaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().iroldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(iroldshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().iroldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(iroldhoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().iroldIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(irmendsword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().irmendIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(irmendpick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().irmendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(irmendaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().irmendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(irmendshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().irmendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(irmendhoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().irmendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(gomendsword), new Object[] { "X", "X", "Z", 'X', CombiningManager.getInstance().gomendIngot, 'Z', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(gomendpick), new Object[] { "XXX", " S ", " S ", 'X', CombiningManager.getInstance().gomendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(gomendaxe), new Object[] { "XX ", "XS ", " S ", 'X', CombiningManager.getInstance().gomendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(gomendshovel), new Object[] { "X", "S", "S", 'X', CombiningManager.getInstance().gomendIngot, 'S', Item.stick });
-		GameRegistry.addRecipe(new ItemStack(gomendhoe), new Object[] { "XX ", " S ", " S ", 'X', CombiningManager.getInstance().gomendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirtonesword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().dirtoneIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirtonepick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().dirtoneIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirtoneaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().dirtoneIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirtoneshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().dirtoneIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirtonehoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().dirtoneIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dironsword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().dironIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dironpick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().dironIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dironaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().dironIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dironshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().dironIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dironhoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().dironIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(diroldsword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().diroldIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(diroldpick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().diroldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(diroldaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().diroldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(diroldshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().diroldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(diroldhoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().diroldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirmendsword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().dirmendIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirmendpick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().dirmendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirmendaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().dirmendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirmendshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().dirmendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(dirmendhoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().dirmendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stornsword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().stornIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stornpick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().stornIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stornaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().stornIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stornshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().stornIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stornhoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().stornIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stoldsword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().stoldIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stoldpick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().stoldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stoldaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().stoldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stoldshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().stoldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stoldhoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().stoldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stomendsword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().stomendIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stomendpick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().stomendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stomendaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().stomendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stomendshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().stomendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(stomendhoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().stomendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(iroldsword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().iroldIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(iroldpick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().iroldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(iroldaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().iroldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(iroldshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().iroldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(iroldhoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().iroldIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(irmendsword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().irmendIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(irmendpick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().irmendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(irmendaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().irmendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(irmendshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().irmendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(irmendhoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().irmendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(gomendsword), new Object[] { "X", "X", "Z", 'X', HybridizingManager.getInstance().gomendIngot, 'Z', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(gomendpick), new Object[] { "XXX", " S ", " S ", 'X', HybridizingManager.getInstance().gomendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(gomendaxe), new Object[] { "XX ", "XS ", " S ", 'X', HybridizingManager.getInstance().gomendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(gomendshovel), new Object[] { "X", "S", "S", 'X', HybridizingManager.getInstance().gomendIngot, 'S', Item.stick });
+		GameRegistry.addRecipe(new ItemStack(gomendhoe), new Object[] { "XX ", " S ", " S ", 'X', HybridizingManager.getInstance().gomendIngot, 'S', Item.stick });
 		GameRegistry.addRecipe(new ItemStack(obsidiansword), new Object[] { "X", "X", "Z", 'X', obsidianIngot, 'Z', Item.stick });
 		GameRegistry.addRecipe(new ItemStack(obsidianpick), new Object[] { "XXX", " S ", " S ", 'X', obsidianIngot, 'S', Item.stick });
 		GameRegistry.addRecipe(new ItemStack(obsidianaxe), new Object[] { "XX ", "XS ", " S ", 'X', obsidianIngot, 'S', Item.stick });
@@ -1072,78 +1070,78 @@ public class HybridModIngotStuff implements ICraftingHandler {
 		GameRegistry.addRecipe(new ItemStack(dirtLegs), new Object[] { "XXX", "X X", "X X", 'X', dirtIngot, });
 		GameRegistry.addRecipe(new ItemStack(dirtBoots), new Object[] { "X X", "X X", "   ", 'X', dirtIngot, });
 		GameRegistry.addRecipe(new ItemStack(dirtBoots), new Object[] { "   ", "X X", "X X", 'X', dirtIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirtoneHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().dirtoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirtoneHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().dirtoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirtonePlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().dirtoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirtoneLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().dirtoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirtoneBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().dirtoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirtoneBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().dirtoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(dironHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().dironIngot, });
-		GameRegistry.addRecipe(new ItemStack(dironHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().dironIngot, });
-		GameRegistry.addRecipe(new ItemStack(dironPlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().dironIngot, });
-		GameRegistry.addRecipe(new ItemStack(dironLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().dironIngot, });
-		GameRegistry.addRecipe(new ItemStack(dironBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().dironIngot, });
-		GameRegistry.addRecipe(new ItemStack(dironBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().dironIngot, });
-		GameRegistry.addRecipe(new ItemStack(diroldHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().diroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(diroldHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().diroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(diroldPlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().diroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(diroldLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().diroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(diroldBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().diroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(diroldBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().diroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirmendHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().dirmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirmendHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().dirmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirmendPlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().dirmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirmendLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().dirmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirmendBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().dirmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirmendBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().dirmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(stornHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().stornIngot, });
-		GameRegistry.addRecipe(new ItemStack(stornHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().stornIngot, });
-		GameRegistry.addRecipe(new ItemStack(stornPlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().stornIngot, });
-		GameRegistry.addRecipe(new ItemStack(stornLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().stornIngot, });
-		GameRegistry.addRecipe(new ItemStack(stornBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().stornIngot, });
-		GameRegistry.addRecipe(new ItemStack(stornBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().stornIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoldHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().stoldIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoldHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().stoldIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoldPlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().stoldIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoldLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().stoldIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoldBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().stoldIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoldBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().stoldIngot, });
-		GameRegistry.addRecipe(new ItemStack(stomendHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().stomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(stomendHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().stomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(stomendPlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().stomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(stomendLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().stomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(stomendBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().stomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(stomendBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().stomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(iroldHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().iroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(iroldHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().iroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(iroldPlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().iroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(iroldLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().iroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(iroldBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().iroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(iroldBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().iroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(irmendHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().irmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(irmendHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().irmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(irmendPlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().irmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(irmendLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().irmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(irmendBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().irmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(irmendBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().irmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(gomendHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().gomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(gomendHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().gomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(gomendPlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().gomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(gomendLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().gomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(gomendBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().gomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(gomendBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().gomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirtoneHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().dirtoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirtoneHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().dirtoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirtonePlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().dirtoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirtoneLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().dirtoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirtoneBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().dirtoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirtoneBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().dirtoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(dironHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().dironIngot, });
+		GameRegistry.addRecipe(new ItemStack(dironHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().dironIngot, });
+		GameRegistry.addRecipe(new ItemStack(dironPlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().dironIngot, });
+		GameRegistry.addRecipe(new ItemStack(dironLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().dironIngot, });
+		GameRegistry.addRecipe(new ItemStack(dironBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().dironIngot, });
+		GameRegistry.addRecipe(new ItemStack(dironBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().dironIngot, });
+		GameRegistry.addRecipe(new ItemStack(diroldHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().diroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(diroldHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().diroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(diroldPlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().diroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(diroldLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().diroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(diroldBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().diroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(diroldBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().diroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirmendHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().dirmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirmendHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().dirmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirmendPlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().dirmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirmendLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().dirmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirmendBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().dirmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirmendBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().dirmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(stornHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().stornIngot, });
+		GameRegistry.addRecipe(new ItemStack(stornHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().stornIngot, });
+		GameRegistry.addRecipe(new ItemStack(stornPlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().stornIngot, });
+		GameRegistry.addRecipe(new ItemStack(stornLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().stornIngot, });
+		GameRegistry.addRecipe(new ItemStack(stornBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().stornIngot, });
+		GameRegistry.addRecipe(new ItemStack(stornBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().stornIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoldHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().stoldIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoldHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().stoldIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoldPlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().stoldIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoldLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().stoldIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoldBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().stoldIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoldBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().stoldIngot, });
+		GameRegistry.addRecipe(new ItemStack(stomendHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().stomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(stomendHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().stomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(stomendPlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().stomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(stomendLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().stomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(stomendBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().stomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(stomendBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().stomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(iroldHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().iroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(iroldHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().iroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(iroldPlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().iroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(iroldLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().iroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(iroldBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().iroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(iroldBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().iroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(irmendHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().irmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(irmendHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().irmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(irmendPlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().irmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(irmendLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().irmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(irmendBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().irmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(irmendBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().irmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(gomendHelmet), new Object[] { "XXX", "X X", "   ", 'X', HybridizingManager.getInstance().gomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(gomendHelmet), new Object[] { "   ", "XXX", "X X", 'X', HybridizingManager.getInstance().gomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(gomendPlate), new Object[] { "X X", "XXX", "XXX", 'X', HybridizingManager.getInstance().gomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(gomendLegs), new Object[] { "XXX", "X X", "X X", 'X', HybridizingManager.getInstance().gomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(gomendBoots), new Object[] { "X X", "X X", "   ", 'X', HybridizingManager.getInstance().gomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(gomendBoots), new Object[] { "   ", "X X", "X X", 'X', HybridizingManager.getInstance().gomendIngot, });
 		GameRegistry.addRecipe(new ItemStack(obsidianHelmet), new Object[] { "XXX", "X X", "   ", 'X', obsidianIngot, });
 		GameRegistry.addRecipe(new ItemStack(obsidianHelmet), new Object[] { "   ", "XXX", "X X", 'X', obsidianIngot, });
 		GameRegistry.addRecipe(new ItemStack(obsidianPlate), new Object[] { "X X", "XXX", "XXX", 'X', obsidianIngot, });
 		GameRegistry.addRecipe(new ItemStack(obsidianLegs), new Object[] { "XXX", "X X", "X X", 'X', obsidianIngot, });
 		GameRegistry.addRecipe(new ItemStack(obsidianBoots), new Object[] { "X X", "X X", "   ", 'X', obsidianIngot, });
 		GameRegistry.addRecipe(new ItemStack(obsidianBoots), new Object[] { "   ", "X X", "X X", 'X', obsidianIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoneHelmet), new Object[] { "XXX", "X X", "   ", 'X', CombiningManager.getInstance().stoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoneHelmet), new Object[] { "   ", "XXX", "X X", 'X', CombiningManager.getInstance().stoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(stonePlate), new Object[] { "X X", "XXX", "XXX", 'X', CombiningManager.getInstance().stoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoneLegs), new Object[] { "XXX", "X X", "X X", 'X', CombiningManager.getInstance().stoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoneBoots), new Object[] { "X X", "X X", "   ", 'X', CombiningManager.getInstance().stoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoneBoots), new Object[] { "   ", "X X", "X X", 'X', CombiningManager.getInstance().stoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoneHelmet), new Object[] { "XXX", "X X", "   ", 'X', stoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoneHelmet), new Object[] { "   ", "XXX", "X X", 'X', stoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(stonePlate), new Object[] { "X X", "XXX", "XXX", 'X', stoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoneLegs), new Object[] { "XXX", "X X", "X X", 'X', stoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoneBoots), new Object[] { "X X", "X X", "   ", 'X', stoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoneBoots), new Object[] { "   ", "X X", "X X", 'X', stoneIngot, });
 		GameRegistry.addRecipe(new ItemStack(sandHelmet), new Object[] { "XXX", "X X", "   ", 'X', sandIngot, });
 		GameRegistry.addRecipe(new ItemStack(sandHelmet), new Object[] { "   ", "XXX", "X X", 'X', sandIngot, });
 		GameRegistry.addRecipe(new ItemStack(sandPlate), new Object[] { "X X", "XXX", "XXX", 'X', sandIngot, });
@@ -1159,33 +1157,34 @@ public class HybridModIngotStuff implements ICraftingHandler {
 
 		// Block Recipes
 		GameRegistry.addRecipe(new ItemStack(dirtBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', dirtIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirtoneBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().dirtoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(dironBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().dironIngot, });
-		GameRegistry.addRecipe(new ItemStack(diroldBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().diroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(dirmendBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().dirmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoneBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().stoneIngot, });
-		GameRegistry.addRecipe(new ItemStack(stornBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().stornIngot, });
-		GameRegistry.addRecipe(new ItemStack(stoldBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().stoldIngot, });
-		GameRegistry.addRecipe(new ItemStack(stomendBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().stomendIngot, });
-		GameRegistry.addRecipe(new ItemStack(iroldBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().iroldIngot, });
-		GameRegistry.addRecipe(new ItemStack(irmendBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().irmendIngot, });
-		GameRegistry.addRecipe(new ItemStack(gomendBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', CombiningManager.getInstance().gomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirtoneBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().dirtoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(dironBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().dironIngot, });
+		GameRegistry.addRecipe(new ItemStack(diroldBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().diroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(dirmendBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().dirmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoneBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', stoneIngot, });
+		GameRegistry.addRecipe(new ItemStack(stornBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().stornIngot, });
+		GameRegistry.addRecipe(new ItemStack(stoldBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().stoldIngot, });
+		GameRegistry.addRecipe(new ItemStack(stomendBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().stomendIngot, });
+		GameRegistry.addRecipe(new ItemStack(iroldBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().iroldIngot, });
+		GameRegistry.addRecipe(new ItemStack(irmendBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().irmendIngot, });
+		GameRegistry.addRecipe(new ItemStack(gomendBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', HybridizingManager.getInstance().gomendIngot, });
 		GameRegistry.addRecipe(new ItemStack(sandBlock, 1), new Object[] { "XXX", "XXX", "XXX", 'X', sandIngot, });
 
 		// Block -> Ingot Recipes
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().dirtoneIngot, 9), new Object[] { new ItemStack(dirtoneBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().dironIngot, 9), new Object[] { new ItemStack(dironBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().diroldIngot, 9), new Object[] { new ItemStack(diroldBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().dirmendIngot, 9), new Object[] { new ItemStack(dirmendBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().stoneIngot, 9), new Object[] { new ItemStack(stoneBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().stornIngot, 9), new Object[] { new ItemStack(stornBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().stoldIngot, 9), new Object[] { new ItemStack(stoldBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().stomendIngot, 9), new Object[] { new ItemStack(stomendBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().iroldIngot, 9), new Object[] { new ItemStack(iroldBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().irmendIngot, 9), new Object[] { new ItemStack(irmendBlock) });
-		GameRegistry.addShapelessRecipe(new ItemStack(CombiningManager.getInstance().gomendIngot, 9), new Object[] { new ItemStack(gomendBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().dirtoneIngot, 9), new Object[] { new ItemStack(dirtoneBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().dironIngot, 9), new Object[] { new ItemStack(dironBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().diroldIngot, 9), new Object[] { new ItemStack(diroldBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().dirmendIngot, 9), new Object[] { new ItemStack(dirmendBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(stoneIngot, 9), new Object[] { new ItemStack(stoneBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().stornIngot, 9), new Object[] { new ItemStack(stornBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().stoldIngot, 9), new Object[] { new ItemStack(stoldBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().stomendIngot, 9), new Object[] { new ItemStack(stomendBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().iroldIngot, 9), new Object[] { new ItemStack(iroldBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().irmendIngot, 9), new Object[] { new ItemStack(irmendBlock) });
+		GameRegistry.addShapelessRecipe(new ItemStack(HybridizingManager.getInstance().gomendIngot, 9), new Object[] { new ItemStack(gomendBlock) });
 		GameRegistry.addShapelessRecipe(new ItemStack(sandIngot, 9), new Object[] { new ItemStack(sandBlock) });
 		GameRegistry.addShapelessRecipe(new ItemStack(dirtIngot, 9), new Object[] { new ItemStack(dirtBlock) });
+		GameRegistry.addRecipe(new ItemStack(stoneIngot), new Object[] { "XXX", "XXX", "XXX", 'X', Block.stone, });
 
 		// Flowers
 		GameRegistry.addShapelessRecipe(new ItemStack(Block.dirt, 1), new Object[] { new ItemStack(dirtFlower) });
@@ -1201,10 +1200,9 @@ public class HybridModIngotStuff implements ICraftingHandler {
 
 		proxy.registerRenderThings();
 	}
-
+	
 	@Override
 	public void onCrafting(EntityPlayer player, ItemStack item, IInventory craftMatrix) {
-		// TODO Auto-generated method stub
 
 		// add enchantments
 		// dirt = silkTouch
@@ -1248,8 +1246,6 @@ public class HybridModIngotStuff implements ICraftingHandler {
 
 	@Override
 	public void onSmelting(EntityPlayer player, ItemStack item) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
