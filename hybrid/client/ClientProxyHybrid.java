@@ -8,14 +8,15 @@ public class ClientProxyHybrid extends hybridcraft.IngotStuff.CommonProxyHybrid
 {
 	public void registerRenderThings()
 	{
-	MinecraftForgeClient.preloadTexture("/hc/tools.png");
-	MinecraftForgeClient.preloadTexture("/hc/ingots.png");
-	MinecraftForgeClient.preloadTexture("/hc/blocks.png");
 	MinecraftForgeClient.preloadTexture("/hc/armor.png");
-	MinecraftForgeClient.preloadTexture("/hc/worldblocks.png");
+	MinecraftForgeClient.preloadTexture("/hc/blocks.png");
 	MinecraftForgeClient.preloadTexture("/hc/flowers.png");
 	MinecraftForgeClient.preloadTexture("/hc/foods.png");
+	MinecraftForgeClient.preloadTexture("/hc/ingots.png");
 	MinecraftForgeClient.preloadTexture("/hc/kitchen.png");
+	MinecraftForgeClient.preloadTexture("/hc/sandwich.png");
+	MinecraftForgeClient.preloadTexture("/hc/tools.png");
+	MinecraftForgeClient.preloadTexture("/hc/worldblocks.png");
 	}
 	
 	@Override
