@@ -1,6 +1,6 @@
 package hybridcraft;
 
-import hybridcraft.IngotStuff.combiner.GuiHandler;
+import hybridcraft.IngotStuff.hybridizer.GuiHandler;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraftforge.common.Configuration;
@@ -10,7 +10,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Config {
-
+	
 	// added new categories
 	public static final String CATEGORY_TOOL = "tools";
 	public static final String CATEGORY_INGOT = "ingots";
@@ -181,8 +181,7 @@ public class Config {
 	public static int  sandIngotID;
 	public static int  dirtIngotID;
 
-	@PreInit
-	public void preload(FMLPreInitializationEvent event) {
+	public Config(FMLPreInitializationEvent event) {
 		
 		// configure item numbers
 		Configuration config = new Configuration(
