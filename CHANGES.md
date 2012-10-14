@@ -1,9 +1,9 @@
 Please reclone the entire project after each push. 
+Also please Add Date and Change(s) Made..
 
 ~Spark
 
-Cleaned up even more;
-Made enchantments random upon crafting;
-Revamped Config Settings;
+Oct. 13, 2012
+Added First Mob. DirtBlok;
 
 Just Cleaning up on this push. :)
