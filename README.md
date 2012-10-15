@@ -1,8 +1,11 @@
 Welcome to Hybrid Craft 2 Git.. :) 
 
 Hybrid Craft 2 is maintained by 3 people. :D
+
 Heyguys.. -- Photographer
+
 Me: SparkMaster.. -- Programmer/Texturer/GitHub
+
 SebDaMuffin.. -- Programmer/GitHub
 
 Hybrid craft is a mods folder mod. :D and it is really
