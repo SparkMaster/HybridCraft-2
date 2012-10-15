@@ -205,8 +205,7 @@ public class Config {
 	public Config(FMLPreInitializationEvent event) {
 		
 		// configure item numbers
-		Configuration config = new Configuration(
-				event.getSuggestedConfigurationFile());
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 
 		obsidianShardID = config.get(CATEGORY_INGOT, "Obsidian Shard", 572).getInt();
 		obsidianIngotID = config.get(CATEGORY_INGOT, "Obsidian Ingot", 573).getInt();

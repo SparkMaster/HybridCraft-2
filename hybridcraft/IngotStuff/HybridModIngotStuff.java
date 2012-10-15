@@ -34,6 +34,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.src.Achievement;
+import net.minecraft.src.AchievementList;
 
 @Mod(modid = "HybridCraft 2 Materials", name = "HybridCraft 2 Materials", version = "2.2 Stable")
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
@@ -47,14 +49,13 @@ public class HybridModIngotStuff implements ICraftingHandler {
 	@SidedProxy(clientSide = "hybrid.client.ClientProxyHybrid", serverSide = "hybridcraft.IngotStuff.CommonProxyHybrid")
 	public static CommonProxyHybrid proxy;
 
+	//Achievements
+	//static final Achievement DirtAchieve = new Achievement(2001, "DirtAchieve", 1, -2, Block.dirt, DirtAchieve).registerAchievement();
+	// Seb Check: http://www.minecraftforge.net/wiki/How_to_add_an_Achievement
+	
+	
 	// Combiner GUI
 	private GuiHandler guiHandler = new GuiHandler();
-
-	// added new categories
-	public static final String CATEGORY_TOOL = "tools";
-	public static final String CATEGORY_INGOT = "ingots";
-	public static final String CATEGORY_ARMOR = "armors";
-	public static final String CATEGORY_FLOWER = "flowers";
 
 	// Tool Materials
 	static EnumToolMaterial dirt = EnumHelper.addToolMaterial("dirt", 0, 30, 1.0F, 0, 15);
@@ -267,17 +268,6 @@ public class HybridModIngotStuff implements ICraftingHandler {
 
 	// Crafting
 	public static BlockHybridizer blockHybridizer;
-
-
-	@PreInit
-	public void preload(FMLPreInitializationEvent event) {
-
-		new Config(event);
-		
-		// configure item numbers
-		//Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-
-	}
 
 	@Init
 	public void load(FMLInitializationEvent event) {
