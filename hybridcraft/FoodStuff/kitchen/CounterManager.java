@@ -29,58 +29,23 @@ public class CounterManager extends AbstractCraftingManager {
 	public static Item fruitSalad;
 	public static Item appleSlice;
 	
-	// Config
-	public static final String CATEGORY_KITCHEN = "kitchen";
-	public static final String CATEGORY_FOOD = "food";
-	
-	public static int  breadSliceID;
-	public static int  chickenStripsID;
-	public static int  beefSlicesID;
-	public static int  baconID;
-	public static int  chickenSandwichID;
-	public static int  chickenSandwichBaconID;
-	public static int  beefSandwichID;
-	public static int  beefSandwichBaconID;
-	public static int  meatSandwichID;
-	public static int  applePieID;
-	public static int  fruitSaladID;
-	public static int  appleSliceID;
-	
-	@PreInit
-	public void preInit(FMLPreInitializationEvent event) {
-		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-		
-	breadSliceID = config.get(CATEGORY_FOOD, "Slice of Bread", 1000).getInt();
-	chickenStripsID = config.get(CATEGORY_FOOD, "Chicken Tender", 1001).getInt();
-	beefSlicesID = config.get(CATEGORY_FOOD, "Beef Slice", 1002).getInt();
-	baconID = config.get(CATEGORY_FOOD, "Bacon", 1003).getInt();
-	chickenSandwichID = config.get(CATEGORY_FOOD, "Chicken Sandwich", 1004).getInt();
-	chickenSandwichBaconID = config.get(CATEGORY_FOOD, "Chicken Sandwich with Bacon", 1005).getInt();
-	beefSandwichID = config.get(CATEGORY_FOOD, "Beef Sandwich", 1006).getInt();
-	beefSandwichBaconID = config.get(CATEGORY_FOOD, "Beef Sandwich with Bacon", 1007).getInt();
-	meatSandwichID = config.get(CATEGORY_FOOD, "Meat Sandwich", 1008).getInt();
-	applePieID = config.get(CATEGORY_FOOD, "Apple Pie", 1009).getInt();
-	fruitSaladID = config.get(CATEGORY_FOOD, "Fruit Salad", 1010).getInt();
-	appleSliceID = config.get(CATEGORY_FOOD, "Apple Slice", 1011).getInt();
-	
-	}
 	
 	
 	private CounterManager() {
 
 		// Classify Items
-		breadSlice = new BreadSlice(breadSliceID, 1).setIconIndex(0).setItemName("Bread Slice");
-		chickenStrips = new ChickenStrip(chickenStripsID, 3).setIconIndex(1).setItemName("Chicken Strips");
-		beefSlices = new BeefSlice(beefSlicesID, 4).setIconIndex(2).setItemName("Beef Slice");
-		bacon = new Bacon(baconID, 4).setIconIndex(3).setItemName("Bacon");
-		chickenSandwich = new ChickenS(chickenSandwichID, 8).setIconIndex(4).setItemName("Chicken Sandwich");
-		chickenSandwichBacon = new ChickenSB(chickenSandwichBaconID, 9).setIconIndex(5).setItemName("Chicken Sandwich");
-		beefSandwich = new BeefS(beefSandwichID, 10).setIconIndex(6).setItemName("Beef Sandwich");
-		beefSandwichBacon = new BeefSB(beefSandwichBaconID, 10).setIconIndex(7).setItemName("Pork Sandwich");
-		meatSandwich = new MeatS(meatSandwichID, 9).setIconIndex(8).setItemName("Meat Sandwich");
-		appleSlice = new AppleSlice(appleSliceID, 1).setIconIndex(9).setItemName("Apple Slice");
-		fruitSalad = new FruitSalad(fruitSaladID, 9).setIconIndex(10).setItemName("Fruit Salad");
-		applePie = new ApplePie(applePieID, 10).setIconIndex(11).setItemName("Apple Pie");
+		breadSlice = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.breadSliceID, 1).setIconIndex(0).setItemName("Bread Slice");
+		chickenStrips = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.chickenStripsID, 3).setIconIndex(1).setItemName("Chicken Strips");
+		beefSlices = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.beefSlicesID, 4).setIconIndex(2).setItemName("Beef Slice");
+		bacon = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.baconID, 4).setIconIndex(3).setItemName("Bacon");
+		chickenSandwich = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.chickenSandwichID, 8).setIconIndex(4).setItemName("Chicken Sandwich");
+		chickenSandwichBacon = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.chickenSandwichBaconID, 9).setIconIndex(5).setItemName("Chicken Sandwich");
+		beefSandwich = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.beefSandwichID, 10).setIconIndex(6).setItemName("Beef Sandwich");
+		beefSandwichBacon = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.beefSandwichBaconID, 10).setIconIndex(7).setItemName("Pork Sandwich");
+		meatSandwich = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.meatSandwichID, 9).setIconIndex(8).setItemName("Meat Sandwich");
+		appleSlice = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.appleSliceID, 1).setIconIndex(9).setItemName("Apple Slice");
+		fruitSalad = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.fruitSaladID, 9).setIconIndex(10).setItemName("Fruit Salad");
+		applePie = new Sandwich(hybridcraft.FoodStuff.HybridModFoodStuff.applePieID, 10).setIconIndex(11).setItemName("Apple Pie");
 
 		// Register Items
 		LanguageRegistry.addName(breadSlice, "Bread Slice");
