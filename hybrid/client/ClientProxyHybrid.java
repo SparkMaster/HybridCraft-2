@@ -4,7 +4,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import hybridcraft.IngotStuff.CommonProxyHybrid;
 import net.minecraftforge.client.MinecraftForgeClient;
 
-public class ClientProxyHybrid extends hybridcraft.IngotStuff.CommonProxyHybrid
+public class ClientProxyHybrid extends hybridcraft.CommonProxyHybrid
 {
 	public void registerRenderThings()
 	{
