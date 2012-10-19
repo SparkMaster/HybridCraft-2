@@ -1,13 +1,17 @@
 package hybridcraft.FoodStuff;
 
+import hybridcraft.CommonProxyHybrid;
 import hybridcraft.FoodStuff.kitchen.*;
 import hybridcraft.IngotStuff.*;
 import net.minecraft.src.*;
+import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -20,7 +24,7 @@ public class HybridModFoodStuff {
 	@Instance("HybridCraft 2 Food")
 	public static HybridModFoodStuff instance = new HybridModFoodStuff();
 
-	@SidedProxy(clientSide = "hybrid.client.ClientProxyHybrid", serverSide = "hybridcraft.IngotStuff.CommonProxyHybrid")
+	@SidedProxy(clientSide = "hybrid.client.ClientProxyHybrid", serverSide = "hybridcraft.CommonProxyHybrid")
 	public static CommonProxyHybrid proxy;
 
 	// Declare Blocks
@@ -30,7 +34,28 @@ public class HybridModFoodStuff {
 	
 	// Counter/Stove GUIs
 	private GuiHandler guiHandler = new GuiHandler();
+	
+	// Config
+	public static final String CATEGORY_KITCHEN = "kitchen";
+	public static final String CATEGORY_FOOD = "food";
 
+	public static int  counterID;
+	public static int  stoveID;
+	public static int  potID;
+	
+
+	
+	@PreInit
+	public void preInit(FMLPreInitializationEvent event) {
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		
+		counterID = config.get(CATEGORY_KITCHEN, "Counter", 665).getInt();
+		stoveID = config.get(CATEGORY_KITCHEN, "Stove", 666).getInt();
+		potID = config.get(CATEGORY_KITCHEN, "Cooking Pot", 667).getInt();
+		
+	}
+	
+	
 	@Init
 	public void load(FMLInitializationEvent event) {
 		
@@ -43,9 +68,9 @@ public class HybridModFoodStuff {
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
 		// Classify Blocks
-		counter = new BlockCounter(hybridcraft.Config.counterID).setBlockName("Counter");
-		stove = new BlockStove(hybridcraft.Config.stoveID).setBlockName("Stove");
-		cookingPot = new BlockCookingPot(hybridcraft.Config.potID).setBlockName("Cooking Pot");
+		counter = new BlockCounter(counterID).setBlockName("Counter");
+		stove = new BlockStove(stoveID).setBlockName("Stove");
+		cookingPot = new BlockCookingPot(potID).setBlockName("Cooking Pot");
 
 		// Register Blocks
 		GameRegistry.registerBlock(stove);
