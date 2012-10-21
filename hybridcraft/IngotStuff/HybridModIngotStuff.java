@@ -7,8 +7,7 @@
 package hybridcraft.IngotStuff;
 
 import java.util.Random;
-
-import hybridcraft.CommonProxyHybrid;
+import hybridcraft.*;
 import hybridcraft.IngotStuff.armor.*;
 import hybridcraft.IngotStuff.hybridizer.BlockHybridizer;
 import hybridcraft.IngotStuff.hybridizer.GuiHandler;
@@ -21,6 +20,8 @@ import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.ModLoader;
+import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import cpw.mods.fml.common.ICraftingHandler;
@@ -49,11 +50,6 @@ public class HybridModIngotStuff implements ICraftingHandler {
 	// Proxy
 	@SidedProxy(clientSide = "hybrid.client.ClientProxyHybrid", serverSide = "hybridcraft.CommonProxyHybrid")
 	public static CommonProxyHybrid proxy;
-
-	//Achievements
-	//static final Achievement DirtAchieve = new Achievement(2001, "DirtAchieve", 1, -2, Block.dirt, DirtAchieve).registerAchievement();
-	// Seb Check: http://www.minecraftforge.net/wiki/How_to_add_an_Achievement
-	
 	
 	// Combiner GUI
 	private GuiHandler guiHandler = new GuiHandler();
@@ -92,6 +88,8 @@ public class HybridModIngotStuff implements ICraftingHandler {
 	static EnumArmorMaterial sanda = EnumHelper.addArmorMaterial("sand", 60, new int[] { 2, 1, 2, 2, }, 14);
 	static EnumArmorMaterial emeralda = EnumHelper.addArmorMaterial("emerald", 500, new int[] { 12, 12, 12, 12 }, 27);
 
+	
+	
 	// Tools
 	public static Item dirtsword;
 	public static Item dirtpick;
@@ -266,10 +264,15 @@ public class HybridModIngotStuff implements ICraftingHandler {
 	public static BlockFlower diamondFlower;
 	public static BlockFlower obsidianFlower;
 	public static BlockFlower emeraldFlower;
-
+	
+	// Achievement
+	public static final Achievement DirtAchieve = new Achievement(2000, "DirtAchieve", 0, 0, Block.dirt, null).setIndependent().registerAchievement();
+	
+	public static AchievementPage HC1 = new AchievementPage("HybridCraft2", DirtAchieve);
+	
 	// Crafting
 	public static BlockHybridizer blockHybridizer;
-
+	
 	// Config
 	public static final String CATEGORY_TOOL = "tools";
 	public static final String CATEGORY_INGOT = "ingots";
@@ -612,8 +615,13 @@ public class HybridModIngotStuff implements ICraftingHandler {
 	}
 	
 	@Init
-	public void load(FMLInitializationEvent event) {
-
+	public void load(FMLInitializationEvent event) {	
+		
+		// Achievements
+		ModLoader.addAchievementDesc(DirtAchieve, "Got Dirt?", "On Your Way to Mixing");
+		
+		AchievementPage.registerAchievementPage(HC1);
+		
 		// Tools
 		dirtsword = new hybridcraft.IngotStuff.ItemHybridSword(dirtswordID, dirt).setIconIndex(0).setItemName("dirtsword");
 		dirtpick = new hybridcraft.IngotStuff.ItemHybridPickaxe(dirtpickID, dirt).setIconIndex(1).setItemName("dirtpick");
@@ -1221,6 +1229,12 @@ public class HybridModIngotStuff implements ICraftingHandler {
 		GameRegistry.addSmelting(obsidianShard.shiftedIndex, new ItemStack(obsidianIngot, 1), 2F);
 
 		proxy.registerRenderThings();
+		
+		// Achievements
+	
+	
+	
+	
 	}
 
 	@Override
@@ -1251,5 +1265,7 @@ public class HybridModIngotStuff implements ICraftingHandler {
 	@Override
 	public void onSmelting(EntityPlayer player, ItemStack item) {
 	}
+	
+	
 
 }

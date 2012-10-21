@@ -66,9 +66,7 @@ public class HybridModFoodStuff {
 	public void preInit(FMLPreInitializationEvent event) {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		
-		counterID = config.get(CATEGORY_KITCHEN, "Counter", 665).getInt();
-		stoveID = config.get(CATEGORY_KITCHEN, "Stove", 666).getInt();
-		potID = config.get(CATEGORY_KITCHEN, "Cooking Pot", 667).getInt();
+		
 		breadSliceID = config.get(CATEGORY_FOOD, "Slice of Bread", 1000).getInt();
 		chickenStripsID = config.get(CATEGORY_FOOD, "Chicken Tender", 1001).getInt();
 		beefSlicesID = config.get(CATEGORY_FOOD, "Beef Slice", 1002).getInt();
@@ -81,13 +79,16 @@ public class HybridModFoodStuff {
 		applePieID = config.get(CATEGORY_FOOD, "Apple Pie", 1009).getInt();
 		fruitSaladID = config.get(CATEGORY_FOOD, "Fruit Salad", 1010).getInt();
 		appleSliceID = config.get(CATEGORY_FOOD, "Apple Slice", 1011).getInt();
-		bowlChickenID = config.get(CATEGORY_FOOD, "Bowl of Chicken", 1016).getInt();
-		bowlBeefID = config.get(CATEGORY_FOOD, "Bowl of Beef", 1017).getInt();
-		bowlMeatID = config.get(CATEGORY_FOOD, "Bowl of Meat", 1018).getInt();
 		BaBID = config.get(CATEGORY_FOOD, "Beef Bread", 1012).getInt();
 		PaBID = config.get(CATEGORY_FOOD, "Pork Bread", 1013).getInt();
 		CaBID = config.get(CATEGORY_FOOD, "Chicken Bread", 1014).getInt();
 		DogBreadID = config.get(CATEGORY_FOOD, "Dog Treat", 1015).getInt();
+		bowlChickenID = config.get(CATEGORY_FOOD, "Bowl of Chicken", 1016).getInt();
+		bowlBeefID = config.get(CATEGORY_FOOD, "Bowl of Beef", 1017).getInt();
+		bowlMeatID = config.get(CATEGORY_FOOD, "Bowl of Meat", 1018).getInt();
+		counterID = config.get(CATEGORY_KITCHEN, "Counter", 1019).getInt();
+		stoveID = config.get(CATEGORY_KITCHEN, "Stove", 1020).getInt();
+		potID = config.get(CATEGORY_KITCHEN, "Cooking Pot", 1021).getInt();
 		
 		
 	}
